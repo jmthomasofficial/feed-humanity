@@ -1,0 +1,32 @@
+# Render Blueprint — Feed Humanity AI Backends
+# Two free-tier web services auto-deployed from this repo.
+# Docs: https://render.com/docs/blueprint-spec
+#
+# NOTE: Free tier uses ephemeral storage. SQLite DBs are recreated
+# on each deploy. For persistent data, upgrade to a paid plan with disks.
+# The frontend gracefully handles empty databases (shows "launching soon").
+
+services:
+  # ── AI Impact Tracker (port 8002 locally, Render uses $PORT)
+  - type: web
+    name: fh-impact
+    runtime: python
+    plan: free
+    rootDir: ai-impact
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+
+  # ── AI Playbook Generator (port 8000 locally, Render uses $PORT)
+  - type: web
+    name: fh-playbook
+    runtime: python
+    plan: free
+    rootDir: ai-playbook
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

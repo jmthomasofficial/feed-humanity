@@ -74,7 +74,7 @@ def _build_providers() -> list[ProviderConfig]:
             name="gemini",
             keys=gemini_keys,
             base_url="https://generativelanguage.googleapis.com/v1beta",
-            model="gemini-3-flash",
+            model="gemini-3-flash-preview",
         ))
 
     nim_keys = _load_keys("nim.txt")

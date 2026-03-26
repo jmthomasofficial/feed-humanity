@@ -83,7 +83,7 @@ def _build_providers() -> list[ProviderConfig]:
             name="nim",
             keys=nim_keys,
             base_url="https://integrate.api.nvidia.com/v1",
-            model="meta/llama-3.1-70b-instruct",
+            model="nvidia/nemotron-3-super-120b-a12b",
         ))
 
     openrouter_keys = _load_keys("open.txt")
@@ -92,7 +92,7 @@ def _build_providers() -> list[ProviderConfig]:
             name="openrouter",
             keys=openrouter_keys,
             base_url="https://openrouter.ai/api/v1",
-            model="google/gemini-3-flash:free",
+            model="nvidia/nemotron-3-super-120b-a12b:free",
         ))
 
     return providers

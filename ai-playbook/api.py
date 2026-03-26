@@ -14,14 +14,25 @@ from datetime import datetime, timezone
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from plan_generator import generate_playbook, PlaybookInput, TIER_LABELS, TIER_DESCRIPTIONS  # type: ignore[import]
+from locator import find_food_banks  # type: ignore[import]
 
 app = FastAPI(
     title="Feed Humanity AI Playbook Generator",
     description="Generates personalized Feed Humanity action plans based on location, budget, time, and participation tier.",
     version="2.0.0",
+)
+
+# CORS — allow frontend to call from any origin (static site hosting)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
 )
 
 
@@ -48,6 +59,21 @@ class PlaybookResponse(BaseModel):
     model_used: str
 
 
+class LocateRequest(BaseModel):
+    zip_code: str = Field(..., description="US zip code to locate food banks near")
+
+
+class LocateResponse(BaseModel):
+    zip_code: str
+    city: str
+    state: str
+    lat: float
+    lng: float
+    food_banks: list
+    search_radius_km: int
+    source: str
+
+
 class TierInfo(BaseModel):
     tier: int
     label: str
@@ -61,6 +87,24 @@ class HealthResponse(BaseModel):
 
 
 # --- Endpoints ---
+
+@app.post("/playbook/locate", response_model=LocateResponse,
+          summary="Locate food banks near a zip code (no LLM call)")
+async def locate_resources(request: LocateRequest):
+    """
+    Geocode a zip code and find real food banks nearby via Overpass API.
+    This is the lightweight first step of playbook generation — no API keys needed.
+    The frontend uses this data to build the LLM prompt client-side (BYOK).
+    """
+    try:
+        result = find_food_banks(request.zip_code.strip())
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except RuntimeError as e:
+        raise HTTPException(status_code=502, detail=f"Location service error: {e}")
+
+    return LocateResponse(**result)
+
 
 @app.post("/playbook", response_model=PlaybookResponse, summary="Generate personalized action plan")
 async def create_playbook(request: PlaybookRequest):

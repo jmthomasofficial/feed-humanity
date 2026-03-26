@@ -74,7 +74,7 @@ def _build_providers() -> list[ProviderConfig]:
             name="gemini",
             keys=gemini_keys,
             base_url="https://generativelanguage.googleapis.com/v1beta",
-            model="gemini-2.0-flash",
+            model="gemini-3-flash",
         ))
 
     nim_keys = _load_keys("nim.txt")
@@ -92,7 +92,7 @@ def _build_providers() -> list[ProviderConfig]:
             name="openrouter",
             keys=openrouter_keys,
             base_url="https://openrouter.ai/api/v1",
-            model="google/gemini-2.0-flash-exp:free",
+            model="google/gemini-3-flash:free",
         ))
 
     return providers

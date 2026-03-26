@@ -165,6 +165,36 @@ async def health_check():
     )
 
 
+# --- NIM BYOK Proxy (CORS bypass for browser-side NIM requests) ---
+
+from fastapi import Request, Response
+
+@app.post("/nim-proxy", summary="Proxy BYOK NIM requests to bypass CORS")
+async def nim_proxy(request: Request):
+    """
+    Thin pass-through proxy for NVIDIA NIM API.
+    The user's API key comes from the Authorization header (BYOK).
+    Key never touches storage — pure relay.
+    """
+    import requests as req
+    auth = request.headers.get("Authorization", "")
+    if not auth:
+        raise HTTPException(status_code=400, detail="Missing Authorization header")
+
+    body = await request.body()
+    try:
+        r = req.post(
+            "https://integrate.api.nvidia.com/v1/chat/completions",
+            headers={"Authorization": auth, "Content-Type": "application/json"},
+            data=body,
+            timeout=30,
+        )
+        return Response(content=r.content, status_code=r.status_code,
+                        media_type="application/json")
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+
 # --- Run directly ---
 if __name__ == "__main__":
     import uvicorn

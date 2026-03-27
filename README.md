@@ -1,4 +1,6 @@
-# Feed Humanity
+# Project HELIOS: Feed Humanity
+
+**Starvation is a routing problem. This repo is the fix.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hashtag](https://img.shields.io/badge/%23FeedHumanity-active-orange)](https://twitter.com/search?q=%23FeedHumanity)

@@ -1315,8 +1315,8 @@
         server: {
           name: 'Free Plan',
           genFn: async (key, system, user) => {
-            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '';
-            const r = await fetch(base + '/gemini-proxy.php', {
+            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity/' : '';
+            const r = await fetch(base + 'gemini-proxy.php', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ system, user }),
@@ -1744,8 +1744,8 @@ Minimum 5 steps and 3 resources.`;
           // ─── Server-side search (foodbank-search.php) ───────────────
           let serverSearchDone = false;
           try {
-            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '';
-            const sfR = await fetch(base + '/foodbank-search.php', {
+            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity/' : '';
+            const sfR = await fetch(base + 'foodbank-search.php', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ zip }),

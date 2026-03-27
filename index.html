@@ -1814,7 +1814,7 @@ Minimum 5 steps and 3 resources.`;
             }
           }
 
-          locData = { city, state, lat, lng, food_banks: foodBanks, zip_code: zip, grocery_stores: groceryStores };
+          locData = { city, state, lat, lng, food_banks: foodBanks, zip_code: zip, grocery_stores: [] };
           const countMsg = foodBanks.length ? `✓ Found ${foodBanks.length} food banks in ${city}, ${state}.` : `No food banks found near ${city}. Add a Google Maps key in Settings for better results.`;
           statusEl.textContent = countMsg + ' Generating plan...';
           } // end if (!serverSearchDone)

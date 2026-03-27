@@ -164,9 +164,33 @@ AI is not decorating this campaign. It is doing real logistics work:
 
 ## The Moment
 
-The companies that fed humanity during the AGI moment will be remembered forever. The ones that did not will be asked why.
+We're in the AGI moment. Jensen Huang said it. The models confirm it. 318 million people are still hungry. 80 billion pounds of food are wasted in the US alone every year — not because there isn't enough food, but because there's no routing layer connecting surplus to need.
 
-If you run a tech company: the CEO challenge is in `playbooks/tech-giant.md`. Buy someone lunch. Film it. The headline writes itself.
+We built that routing layer. The AI surplus-to-deficit matching engine is functional. The server-side playbook generator works for anyone with a zip code. The viral challenge mechanic is already spreading. The code is open. The mechanism is real.
+
+**What's missing is the infrastructure, data, and logistics that only you can provide.**
+
+---
+
+### If you run a tech company
+
+Buying someone lunch is the floor, not the ceiling. Here's what would actually move the needle:
+
+**Compute & infrastructure** — The AI Dispatch engine matches surplus food to food banks using weighted scoring across distance, perishability, volume, and dietary needs. It runs on a local machine right now. It needs cloud compute at scale. Google, Microsoft, NVIDIA: donate cloud credits or GPU access. When this goes viral, it also needs edge deployment — this currently runs on shared PHP hosting. Cloudflare, AWS, Google Cloud: one deployment decision serves the world.
+
+**Data** — The food bank search uses Google Places and OpenStreetMap. 211.org and FindHelp.org maintain verified databases of every food resource in America and have developer APIs. A data partnership with either organization doubles search accuracy overnight, especially in rural areas where Google Places data is thin.
+
+**Logistics** — Amazon has last-mile delivery infrastructure and is already a Feeding America Visionary Partner. Uber Eats and DoorDash have the drivers and routing algorithms. Whole Foods, Walmart, and Target know which items expire today. The AI Dispatch engine is ready to route surplus food — it needs live inventory feeds and a truck.
+
+**Platform reach** — #FeedHumanity is a viral mechanic waiting for fuel. Meta, TikTok, Twitter/X: your algorithm decides whether this reaches 1 million people or 1 billion. One internal campaign decision is worth more than any ad budget.
+
+**Financial rails** — Corporate pledges need to move instantly from decision to food. Stripe, PayPal, Square: a payment integration routing dollars directly to registered food partners makes every corporate commitment verifiable, trackable, and real.
+
+---
+
+The companies that fed humanity during this moment will be remembered. Not because someone issued a press release — because the code is open-source, the impact data is public, and every meal matched is a number that doesn't lie.
+
+The playbook for your tier is in `playbooks/tech-giant.md`.
 
 ---
 

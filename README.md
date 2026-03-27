@@ -7,6 +7,14 @@
 
 Enter your zip code. Get a personalized AI action plan. Feed someone. No accounts, no API keys, no friction.
 
+<p align="center">
+  <a href="https://www.jmthomasofficial.com/feedhumanity/feed-humanity-helios.mp4">
+    <img src="feed-humanity-video-thumb.png" alt="Watch: How Feed Humanity Works" width="720">
+  </a>
+  <br>
+  <strong>▶ Watch: The Complete Step-by-Step Guide</strong>
+</p>
+
 ---
 
 Jensen Huang says AGI is here. 318 million people are hungry. This repo contains everything you need to help fix that, whether you're one person with $5, a restaurant with surplus food, or a Fortune 500 company looking for the highest-ROI act of corporate responsibility in history.

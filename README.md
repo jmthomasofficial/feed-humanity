@@ -17,6 +17,16 @@ Enter your zip code. Get a personalized AI action plan. Feed someone. No account
   <strong>▶ Watch: The Complete Step-by-Step Guide</strong>
 </p>
 
+<p align="center">
+  <a href="https://jmthomasofficial.com/helios/helios-full-strategy.m4a">🔊 <strong>Listen to the full blueprint.</strong></a>
+  <br>
+  10 CEO challenges. The AI dispatch architecture. A 4-week execution timeline.<br>
+  And the question no one building AGI wants to answer.
+  <br><br>
+  <em>Feeding Humanity with Project HELIOS</em><br>
+  One builder. One pipeline. One ask that reframes who artificial intelligence actually works for.
+</p>
+
 ---
 
 Jensen Huang says AGI is here. 318 million people are hungry. This repo contains everything you need to help fix that, whether you're one person with $5, a restaurant with surplus food, or a Fortune 500 company looking for the highest-ROI act of corporate responsibility in history.

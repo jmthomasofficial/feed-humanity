@@ -1327,7 +1327,8 @@
             if (d.error === 'rate_limit' || d.error === 'server_config') {
               const err = new Error(d.message || d.error); err.code = d.error; throw err;
             }
-            if (!r.ok) throw new Error(d.error || `Server error ${r.status}`);
+            const errMsg = typeof d.error === 'object' ? (d.error?.message || d.error?.status || JSON.stringify(d.error)) : d.error;
+            if (!r.ok) throw new Error(errMsg || `Server error ${r.status}`);
             const text = d.candidates?.[0]?.content?.parts?.[0]?.text;
             if (!text) throw new Error('No response from server');
             return text;

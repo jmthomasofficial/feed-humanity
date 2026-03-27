@@ -75,7 +75,7 @@ if (!$input || empty($input['system']) || empty($input['user'])) {
 }
 
 // ── Call Gemini API ────────────────────────────────────────────────────────
-$model = 'gemini-2.0-flash';
+$model = 'gemini-3-flash-preview';
 $url = "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" . GEMINI_API_KEY;
 
 $payload = json_encode([

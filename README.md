@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hashtag](https://img.shields.io/badge/%23FeedHumanity-active-orange)](https://twitter.com/search?q=%23FeedHumanity)
 
-**Try it now — no setup required:** [jmthomasofficial.com/feedhumanity](https://jmthomasofficial.com/feedhumanity/)
+**Try it now — no setup required:** [feedhumanity2026.com](https://www.feedhumanity2026.com)
 
 Enter your zip code. Get a personalized AI action plan. Feed someone. No accounts, no API keys, no friction.
 
@@ -100,7 +100,7 @@ Upload all files to your web host. Visit your domain. Enter a zip code. Your ins
 | `api-config.example.php` | Template to copy and fill in. |
 | `rate-limit.json` | Auto-created on first use. Tracks daily usage per IP (hashed for privacy). |
 
-When a visitor generates a plan with no personal key, the request goes through `gemini-proxy.php` using your server key. After 5 plans, they see a friendly message offering to add their own key for unlimited access. This keeps your Gemini free tier (1,500 requests/day) sustainable across ~300 unique visitors daily.
+When a visitor generates a plan with no personal key, the request goes through `gemini-proxy.php` using the site owner's Gemini key. After 5 plans, they see a friendly message offering to add their own key for unlimited access. This keeps the Gemini free tier (1,500 requests/day) sustainable across ~300 unique visitors daily.
 
 ---
 

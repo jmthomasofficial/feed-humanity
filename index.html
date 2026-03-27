@@ -647,6 +647,11 @@
     .pb-hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
     .pb-hashtags span { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: oklch(0.7 0.2 30); background: oklch(0.6 0.2 30 / 0.1); padding: 4px 10px; border-radius: 20px; }
 
+    details.s-guide { margin-top:0.5rem; font-size:0.85rem; color:var(--text-2); }
+    details.s-guide summary { cursor:pointer; color:oklch(0.75 0.15 220); user-select:none; }
+    details.s-guide ol { margin:0.6rem 0 0.25rem 1.2rem; line-height:1.8; }
+    details.s-guide ol li { margin-bottom:0.1rem; }
+
     .pb-new-btn {
       display: block; width: 100%; margin-top: 2rem; padding: 12px; border-radius: 50px;
       background: transparent; color: var(--text-1); border: 1px solid rgba(255,255,255,0.15);
@@ -892,7 +897,7 @@
         <h3 class="fire">Get your personalized AI playbook</h3>
         <p>Enter your zip code and budget — our AI generates a step-by-step plan using real food banks near you.</p>
         <button class="btn btn-g" id="getPlaybookBtn">Generate My Playbook ✨</button>
-        <p style="font-size:0.75rem; color:var(--text-2); margin-top:0.75rem; margin-bottom:0;">Requires a free API key — click ⚙️ above to set up in 30 seconds</p>
+        <p style="font-size:0.75rem; color:var(--text-2); margin-top:0.75rem; margin-bottom:0;">Free · Works instantly · No sign-up needed</p>
       </div>
     </div>
   </section>
@@ -1030,8 +1035,8 @@
   <div class="settings-overlay" id="settingsOverlay">
     <div class="settings-modal">
       <button class="settings-close" id="settingsClose">✕</button>
-      <h3>⚙️ AI Settings</h3>
-      <p class="s-sub">Your key stays in this browser. It <strong>never</strong> touches our servers.</p>
+      <h3>🔑 Unlimited Access</h3>
+      <p class="s-sub">Get unlimited AI plans — add your own free Gemini key below. <strong>Your key never leaves this browser.</strong></p>
 
       <div id="storedKeyDisplay" style="display:none;">
         <div class="s-stored">
@@ -1055,6 +1060,15 @@
           <input type="password" class="s-input" id="apiKeyInput" placeholder="Paste your key here" autocomplete="off" spellcheck="false" />
           <div class="s-hint" id="keyHint">
             <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get a free Gemini key →</a> Takes 30 seconds.
+            <details class="s-guide">
+              <summary>📋 Step-by-step guide</summary>
+              <ol>
+                <li>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a> — sign in with Google</li>
+                <li>Click <strong>"Create API key"</strong> → <strong>"Create API key in new project"</strong></li>
+                <li>Copy the key and paste it in the box above → Save Key</li>
+              </ol>
+              <p style="margin:0.25rem 0 0;font-size:0.8rem;">100% free. No credit card needed.</p>
+            </details>
           </div>
         </div>
 
@@ -1088,7 +1102,7 @@
     <div class="pb-modal">
       <button class="pb-close" id="pbClose">✕</button>
       <h3>🔥 Your AI Playbook</h3>
-      <p class="pb-sub">Enter your zip code — we'll find real food banks near you, then your AI key generates a personalized plan.</p>
+      <p class="pb-sub">Enter your zip code — we'll find real food banks near you and write your personalized action plan.</p>
 
       <div id="pbForm">
         <div class="pb-row">
@@ -1297,6 +1311,26 @@
             const d = await r.json();
             return d.choices?.[0]?.message?.content || '';
           }
+        },
+        server: {
+          name: 'Free Plan',
+          genFn: async (key, system, user) => {
+            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '';
+            const r = await fetch(base + '/gemini-proxy.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ system, user }),
+              signal: AbortSignal.timeout(90000)
+            });
+            const d = await r.json();
+            if (d.error === 'rate_limit' || d.error === 'server_config') {
+              const err = new Error(d.message || d.error); err.code = d.error; throw err;
+            }
+            if (!r.ok) throw new Error(d.error || `Server error ${r.status}`);
+            const text = d.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (!text) throw new Error('No response from server');
+            return text;
+          }
         }
       },
 
@@ -1379,8 +1413,6 @@
     });
 
     document.getElementById('getPlaybookBtn').addEventListener('click', () => {
-      const saved = BYOK.get();
-      if (!saved) { openSettings(); return; }
       openPlaybook();
     });
 
@@ -1619,8 +1651,8 @@ Minimum 5 steps and 3 resources.`;
     }
 
     document.getElementById('pbGenerateBtn').addEventListener('click', async () => {
-      const saved = BYOK.get();
-      if (!saved) { closePlaybook(); openSettings(); return; }
+      let saved = BYOK.get();
+      if (!saved) { saved = { provider: 'server', key: '' }; }
 
       const zip = document.getElementById('pbZip').value.trim();
       if (!zip) { document.getElementById('pbStatus').className = 'pb-status err'; document.getElementById('pbStatus').textContent = 'Enter a zip code.'; return; }
@@ -1709,6 +1741,30 @@ Minimum 5 steps and 3 resources.`;
           statusEl.textContent = `✓ Found ${foodBanks.length} food resources in ${city}, ${state} via Google Maps. Generating plan...`;
 
         } else {
+          // ─── Server-side search (foodbank-search.php) ───────────────
+          let serverSearchDone = false;
+          try {
+            const base = location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '';
+            const sfR = await fetch(base + '/foodbank-search.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ zip }),
+              signal: AbortSignal.timeout(20000)
+            });
+            if (sfR.ok) {
+              const sfD = await sfR.json();
+              if (sfD.city && sfD.lat) {
+                locData = { ...sfD, zip_code: zip };
+                const fbCount = sfD.food_banks?.length || 0;
+                statusEl.textContent = (fbCount
+                  ? `✓ Found ${fbCount} food resource${fbCount !== 1 ? 's' : ''} near ${sfD.city}.`
+                  : `Found ${sfD.city}. Generating your plan...`) + ' Writing your plan...';
+                serverSearchDone = true;
+              }
+            }
+          } catch { /* fall through to Overpass */ }
+
+          if (!serverSearchDone) {
           // ─── Fallback: Nominatim + Overpass (free, no key needed) ───
           const geoR = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(zip)}&country=us&format=json&limit=1`, {
             headers: { 'User-Agent': 'FeedHumanity/1.0' }, signal: AbortSignal.timeout(10000)
@@ -1761,6 +1817,7 @@ Minimum 5 steps and 3 resources.`;
           locData = { city, state, lat, lng, food_banks: foodBanks, zip_code: zip, grocery_stores: groceryStores };
           const countMsg = foodBanks.length ? `✓ Found ${foodBanks.length} food banks in ${city}, ${state}.` : `No food banks found near ${city}. Add a Google Maps key in Settings for better results.`;
           statusEl.textContent = countMsg + ' Generating plan...';
+          } // end if (!serverSearchDone)
         }
       } catch (e) {
         statusEl.className = 'pb-status err'; statusEl.textContent = `Location lookup failed: ${e.message}`;
@@ -1784,7 +1841,18 @@ Minimum 5 steps and 3 resources.`;
 
         renderPlaybook(plan, locData);
       } catch (e) {
+        if (e.code === 'rate_limit') {
+          statusEl.className = 'pb-status err';
+          statusEl.innerHTML = e.message + ' <a href="#" onclick="event.preventDefault();closePlaybook();openSettings();" style="color:oklch(0.75 0.15 220);font-weight:500;">Add your key →</a>';
+          genBtn.disabled = false; return;
+        }
+        if (e.code === 'server_config') {
+          statusEl.className = 'pb-status err';
+          statusEl.innerHTML = (e.message || 'Server not configured.') + ' <a href="#" onclick="event.preventDefault();closePlaybook();openSettings();" style="color:oklch(0.75 0.15 220);font-weight:500;">Add your key →</a>';
+          genBtn.disabled = false; return;
+        }
         statusEl.className = 'pb-status err'; statusEl.textContent = `AI generation failed: ${e.message}`;
+        genBtn.disabled = false; return;
       }
       genBtn.disabled = false;
     });

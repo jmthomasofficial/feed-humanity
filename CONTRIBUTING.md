@@ -181,4 +181,4 @@ This project exists to serve people who need food. Keep that in mind in every in
 
 ## Contact
 
-Open an issue for bugs, feature requests, or questions. For partnership inquiries (food banks, restaurant chains, corporate sponsors), reach out via [jmthomasofficial.com](https://jmthomasofficial.com).
+Open an issue for bugs, feature requests, or questions. For partnership inquiries (food banks, restaurant chains, corporate sponsors), email [helios@feedhumanity2026.com](mailto:helios@feedhumanity2026.com).

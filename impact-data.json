@@ -1,0 +1,9 @@
+{
+  "entries": [
+    {"id": 1, "meals_count": 25, "city": "Nashville", "state": "Tennessee", "lat": 36.1622767, "lng": -86.7742984, "platform": "tiktok", "tracked_at": "2026-03-26T12:00:00Z"},
+    {"id": 2, "meals_count": 50, "city": "Chicago", "state": "Illinois", "lat": 41.8755616, "lng": -87.6244212, "platform": "instagram", "tracked_at": "2026-03-26T12:30:00Z"},
+    {"id": 3, "meals_count": 100, "city": "Los Angeles", "state": "California", "lat": 34.0536909, "lng": -118.242766, "platform": "twitter", "tracked_at": "2026-03-26T13:00:00Z"},
+    {"id": 4, "meals_count": 10, "city": "Atlanta", "state": "Georgia", "lat": 33.7544657, "lng": -84.3898151, "platform": "tiktok", "tracked_at": "2026-03-26T13:30:00Z"},
+    {"id": 5, "meals_count": 5, "city": "Memphis", "state": "Tennessee", "lat": 35.1460249, "lng": -90.0517638, "platform": "facebook", "tracked_at": "2026-03-26T14:00:00Z"}
+  ]
+}

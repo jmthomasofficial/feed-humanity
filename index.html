@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feed Humanity | The Campaign</title>
+  <meta name="description" content="318 million people are hungry. You can start fixing that in 15 minutes and $5. Connect surplus to need using AI. This is the global open-source playbook." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#06060b" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://jmthomasofficial.com/feedhumanity/" />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jmthomasofficial.com/feedhumanity/" />
+  <meta property="og:site_name" content="Feed Humanity" />
+  <meta property="og:title" content="Feed Humanity | The Campaign Hub" />
+  <meta property="og:description" content="318 million people are hungry. The gap is coordination. This is the global open-source playbook. #FeedHumanity" />
+  <meta property="og:image" content="https://jmthomasofficial.com/feedhumanity/feed-humanity-thumbnail.png" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:image:alt" content="Feed Humanity | The Gap Is Five Blocks Wide." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Feed Humanity | The Campaign Hub" />
+  <meta name="twitter:description" content="318 million people are hungry. You can start fixing that in 15 minutes and $5. #FeedHumanity" />
+  <meta name="twitter:image" content="https://jmthomasofficial.com/feedhumanity/feed-humanity-thumbnail.png" />
+  <meta name="twitter:image:alt" content="Feed Humanity | 80 billion lbs thrown away. 318 million starving." />
+  <meta name="twitter:creator" content="@jmthomasofficial" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Feed Humanity Hub",
+    "description": "The open-source logistics engine to end starvation using artificial intelligence.",
+    "url": "https://jmthomasofficial.com/feedhumanity/"
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <style>
+    /* ═══════════════════════════════════
+       Design System: Fluid oklch tokens
+    ═══════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --base: oklch(0.55 0.16 30); /* Ember orange core */
+      --bg: oklch(0.18 0.01 260 / 1);
+      --bg-alt: oklch(0.22 0.01 260 / 0.7);
+      --text-0: #ffffff;
+      --text-1: oklch(0.92 0.01 260);
+      --text-2: oklch(0.75 0.02 260);
+      
+      --glow-1: oklch(from var(--base) 0.65 0.22 h / 0.15);
+      --glow-2: oklch(from var(--base) 0.5 0.22 h / 0.3);
+      --border-g: oklch(from var(--base) 0.5 0.22 h / 0.4);
+      --border-s: oklch(from var(--base) l c h / 0.15);
+      
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --radius: 12px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-1);
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 50% -10%, var(--glow-1) 0%, transparent 60%),
+        radial-gradient(circle at 100% 40%, oklch(0.4 0.15 280 / 0.08) 0%, transparent 50%),
+        var(--bg);
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Ambient noise overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    h1, h2, h3, h4 { font-weight: 800; color: var(--text-0); letter-spacing: -0.02em; line-height: 1.15; }
+    p { margin-bottom: 1.25rem; font-size: 1.05rem; }
+    strong { font-weight: 600; color: var(--text-0); }
+
+    /* Nav */
+    .bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out), backdrop-filter 0.4s;
+    }
+    .bar.solid {
+      background: oklch(0.18 0.01 260 / 0.85);
+      backdrop-filter: blur(20px);
+      border-color: rgba(255,255,255,0.05);
+    }
+    .bar-brand {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 800; font-size: 1.1rem; color: var(--text-0); text-decoration: none;
+    }
+    .bar-brand span.live {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      background: oklch(0.65 0.22 30);
+      box-shadow: 0 0 10px var(--glow-2);
+      animation: pulse 2s infinite;
+    }
+    .bar-hash {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem; color: oklch(0.7 0.2 30);
+      font-weight: 500;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 14px var(--glow-2); }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.7rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      cursor: pointer; border: none; white-space: nowrap;
+    }
+    .btn-g {
+      background: linear-gradient(135deg, oklch(from var(--base) 0.65 0.2 30), oklch(from var(--base) 0.5 0.2 25));
+      color: #000;
+    }
+    .btn-g:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -6px var(--glow-2);
+    }
+    .btn-w {
+      background: var(--text-0); color: var(--bg);
+    }
+    .btn-w:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -6px rgba(255,255,255,0.2);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--text-1);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.4); color: var(--text-0);
+    }
+
+    /* Share System */
+    .share-wrap { position: relative; display: inline-block; }
+    .share-panel {
+      position: absolute; bottom: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(0.95);
+      background: oklch(0.25 0.01 260 / 0.85); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
+      padding: 0.5rem; width: 260px; z-index: 1000;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 12px 40px -10px rgba(0,0,0,0.8);
+    }
+    .share-panel.open {
+      opacity: 1; visibility: visible; pointer-events: auto;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .share-item {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; padding: 10px 14px;
+      border: none; background: transparent; color: var(--text-1);
+      font-family: inherit; font-size: 0.95rem; font-weight: 500;
+      text-align: left; cursor: pointer; border-radius: 8px;
+      text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .share-item:hover { background: rgba(255,255,255,0.06); color: var(--text-0); }
+    .si-icon { width: 24px; text-align: center; font-size: 1.1rem; }
+    .si-x { font-weight: 800; }
+    .si-fb { color: #1877f2; font-weight: 700; font-size: 1.2rem; }
+    .si-li { color: #0a66c2; font-weight: 700; }
+    .si-rd { color: #ff4500; font-weight: 700; }
+    .si-wa { color: #25d366; }
+    .si-tg { color: #0088cc; }
+    .si-em { opacity: 0.8; }
+    .si-cp { font-size: 1rem; }
+    .share-sep { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 14px; }
+
+    /* Layout Utility */
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+    .wrap-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    .fire {
+      background: linear-gradient(135deg, oklch(0.8 0.2 40), oklch(0.6 0.24 25));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* Scroll Animations (CSS-native) */
+    @supports (animation-timeline: view()) {
+      .rv {
+        animation: fadeUp 1s var(--ease-out) both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 30%;
+      }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .rv.fallback { opacity: 0; transform: translateY(30px); transition: all 0.6s var(--ease-out); }
+    .rv.fallback.vis { opacity: 1; transform: translateY(0); }
+
+    /* Sections */
+    section { padding: 7rem 0; }
+    .alt-bg { background: var(--bg-alt); border-block: 1px solid rgba(255,255,255,0.03); }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding-top: 120px;
+    }
+    .hero-kicker { max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem; color: var(--text-2); text-wrap: pretty; }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; max-width: 800px; }
+    .hero-sub { font-size: 1.15rem; color: var(--text-2); max-width: 520px; margin-bottom: 2.5rem; text-wrap: pretty; }
+
+    /* ── VIDEO Wrapper ── */
+    .vid-wrap {
+      width: 100%; max-width: 920px;
+      margin: 0 auto 3rem auto;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 24px 64px rgba(0,0,0,0.55),
+        0 0 100px var(--glow-1);
+      animation: fadeUp 0.6s var(--ease-out) 0.24s backwards;
+      transition: box-shadow 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+    }
+    .vid-wrap:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 0 0 1px var(--border-s),
+        0 32px 80px rgba(0,0,0,0.6),
+        0 0 140px var(--glow-2);
+    }
+    .vid-wrap video { display: block; width: 100%; background: #000; }
+    .vid-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      color: var(--text-0);
+      font-size: 0.75rem; font-weight: 600;
+      padding: 6px 12px; border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      z-index: 10;
+    }
+
+    /* Fault / Contrast */
+    .fault-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .fc { padding: 2.5rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2); }
+    .fc.glow { border-color: var(--border-s); background: linear-gradient(to bottom right, rgba(255,255,255,0.02), transparent); }
+    .fc-num { font-family: 'DM Mono', monospace; font-size: 2.5rem; font-weight: 500; margin-bottom: 1rem; }
+    .fc-num.loss { color: oklch(0.7 0.2 30); }
+    .fc-num.neutral { color: var(--text-0); }
+    .fc-lbl { font-size: 0.95rem; color: var(--text-2); }
+
+    /* Steps */
+    .step-grid { display: grid; gap: 1.5rem; margin-top: 3rem; }
+    .step {
+      display: flex; gap: 1.5rem; background: var(--bg-alt);
+      border: 1px solid rgba(255,255,255,0.04); padding: 2rem; border-radius: var(--radius);
+      align-items: flex-start;
+    }
+    .sz {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: oklch(0.6 0.2 30 / 0.1); border: 1px solid var(--border-g);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace; font-size: 1.2rem; color: oklch(0.7 0.2 30);
+    }
+    .step h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .step p { font-size: 0.95rem; color: var(--text-2); margin: 0; }
+
+    /* Why Grid */
+    .w-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .wc { padding: 2rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.15); }
+    .wc-t { font-family: 'DM Mono', monospace; color: oklch(0.7 0.2 30); margin-bottom: 1rem; font-size: 0.85rem; }
+
+    /* Tiers */
+    .t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .tier {
+      display: flex; flex-direction: column; padding: 2.5rem 2rem; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.06); background: var(--bg-alt);
+    }
+    .tier-tag { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: oklch(0.7 0.2 30); margin-bottom: 0.5rem; }
+    .tier h3 { font-size: 1.4rem; margin-bottom: 0.2rem; }
+    .t-meta { font-size: 0.85rem; color: var(--text-2); margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .tier ul { flex: 1; list-style: none; margin-bottom: 2rem; }
+    .tier li { position: relative; padding-left: 1.5rem; font-size: 0.95rem; color: var(--text-2); margin-bottom: 0.75rem; }
+    .tier li::before { content: '✓'; position: absolute; left: 0; color: oklch(0.6 0.2 30); font-weight: 700; font-size: 0.9rem; }
+    
+    /* Transmission */
+    .tx-box {
+      max-width: 760px; margin: 3rem auto 0; padding: 3rem; border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.3);
+      position: relative; overflow: hidden;
+    }
+    .tx-box::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, oklch(0.6 0.2 30), oklch(0.5 0.15 260));
+    }
+    .tx-lbl { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: oklch(0.7 0.2 30); margin-bottom: 2rem; letter-spacing: 0.1em; }
+    .tx-box blockquote { font-size: 1.3rem; font-weight: 300; line-height: 1.6; border-left: 3px solid oklch(0.5 0.2 30); padding-left: 1.5rem; margin-bottom:1.5rem; }
+    .tx-more { color: oklch(0.7 0.2 30); text-decoration: none; font-weight: 600; font-size: 0.95rem; display:inline-block; }
+    .tx-more:hover { text-decoration: underline; color:var(--text-0); }
+    .tx-full { display: none; margin-top: 1.5rem; color: var(--text-1); line-height: 1.8; font-size: 1rem; }
+    .tx-full p { margin-bottom: 1.25rem; }
+    .tx-full strong { color: var(--text-0); font-weight:600; }
+    .tx-full h4 { color: oklch(0.7 0.2 30); margin: 2rem 0 1rem; font-size: 1.05rem; }
+
+    /* Footer */
+    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: var(--text-2); }
+    .f-links { display: flex; gap: 1.5rem; justify-content: center; margin-block: 1.5rem; }
+    .f-links a { color: var(--text-1); text-decoration: none; }
+    .f-links a:hover { color: oklch(0.7 0.2 30); }
+
+    /* Util */
+    .div-line { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 4rem 0; opacity: 0.5; }
+    .div-line hr { width: 60px; border: none; border-top: 1px solid var(--text-2); }
+    .div-line span { font-size: 1.2rem; }
+
+    /* ═══ BYOK Settings Panel ═══ */
+    .gear-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-2); font-size: 1.3rem;
+      padding: 6px; border-radius: 50%; transition: all 0.3s var(--ease-out);
+      display: flex; align-items: center;
+    }
+    .gear-btn:hover { color: oklch(0.7 0.2 30); transform: rotate(60deg); }
+
+    .settings-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out);
+    }
+    .settings-overlay.open { opacity: 1; visibility: visible; }
+
+    .settings-modal {
+      width: 90%; max-width: 520px;
+      background: oklch(0.2 0.01 260 / 0.92); backdrop-filter: blur(30px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+      padding: 2.5rem; position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.35s var(--ease-out);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 120px var(--glow-1);
+    }
+    .settings-overlay.open .settings-modal { transform: translateY(0) scale(1); }
+
+    .settings-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-2); font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .settings-close:hover { background: rgba(255,255,255,0.12); color: var(--text-0); }
+
+    .settings-modal h3 {
+      font-size: 1.4rem; margin-bottom: 0.25rem;
+    }
+    .settings-modal .s-sub {
+      font-size: 0.85rem; color: var(--text-2); margin-bottom: 2rem;
+    }
+
+    .s-group { margin-bottom: 1.5rem; }
+    .s-label {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: var(--text-2); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
+    }
+    .s-select, .s-input {
+      width: 100%; padding: 12px 14px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; color: var(--text-0);
+      font-family: 'DM Mono', monospace; font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .s-select:focus, .s-input:focus { outline: none; border-color: oklch(0.6 0.2 30); }
+    .s-select option { background: oklch(0.2 0.01 260); }
+
+    .s-hint {
+      font-size: 0.78rem; color: var(--text-2); margin-top: 0.5rem;
+    }
+    .s-hint a { color: oklch(0.7 0.2 30); text-decoration: none; font-weight: 600; }
+    .s-hint a:hover { text-decoration: underline; }
+
+    .s-actions {
+      display: flex; gap: 10px; margin-top: 2rem;
+    }
+    .s-actions button {
+      flex: 1; padding: 12px; border-radius: 50px; font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; border: none;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.25s var(--ease-out);
+    }
+    .s-test {
+      background: oklch(0.6 0.2 30 / 0.15); color: oklch(0.8 0.2 30);
+      border: 1px solid oklch(0.6 0.2 30 / 0.3) !important;
+    }
+    .s-test:hover { background: oklch(0.6 0.2 30 / 0.25); }
+    .s-save {
+      background: linear-gradient(135deg, oklch(0.65 0.2 30), oklch(0.5 0.2 25));
+      color: #000;
+    }
+    .s-save:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -4px var(--glow-2); }
+
+    .s-status {
+      text-align: center; font-size: 0.85rem; margin-top: 1rem;
+      min-height: 1.4em; transition: color 0.3s;
+    }
+    .s-status.ok { color: oklch(0.7 0.22 145); }
+    .s-status.err { color: oklch(0.7 0.22 25); }
+    .s-status.pending { color: oklch(0.7 0.15 60); }
+
+    .s-stored {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; margin-top: 1rem;
+      background: oklch(0.7 0.22 145 / 0.08);
+      border: 1px solid oklch(0.7 0.22 145 / 0.2);
+      border-radius: 10px; font-size: 0.85rem;
+    }
+    .s-stored .s-prov { color: oklch(0.8 0.15 145); font-weight: 600; }
+    .s-clear {
+      background: none; border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-2); padding: 4px 12px; border-radius: 20px;
+      font-size: 0.75rem; cursor: pointer; font-family: inherit;
+      transition: all 0.2s;
+    }
+    .s-clear:hover { border-color: oklch(0.7 0.22 25); color: oklch(0.7 0.22 25); }
+
+    /* ═══ Playbook Generator CTA ═══ */
+    .pb-cta {
+      margin-top: 3rem; text-align: center;
+      padding: 2.5rem; border-radius: var(--radius);
+      border: 1px solid oklch(0.6 0.2 30 / 0.2);
+      background: linear-gradient(135deg, oklch(0.6 0.2 30 / 0.05), transparent);
+    }
+    .pb-cta h3 { margin-bottom: 0.5rem; }
+    .pb-cta p { color: var(--text-2); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+    /* ═══ Impact Dashboard ═══ */
+    .impact-section {
+      background:
+        radial-gradient(ellipse at 50% 0%, oklch(0.4 0.15 30 / 0.08) 0%, transparent 60%),
+        var(--bg-alt);
+      border-block: 1px solid rgba(255,255,255,0.03);
+    }
+    .impact-header { text-align: center; margin-bottom: 3rem; }
+    .impact-header p { color: var(--text-2); font-size: 0.95rem; }
+
+    .impact-counters {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .impact-card {
+      text-align: center; padding: 2.5rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: oklch(0.16 0.01 260 / 0.6);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+    .impact-card:hover {
+      border-color: oklch(0.6 0.2 30 / 0.3);
+      box-shadow: 0 8px 32px oklch(0.5 0.2 30 / 0.08);
+    }
+    .impact-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .impact-value {
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      background: linear-gradient(135deg, oklch(0.8 0.2 40), oklch(0.65 0.24 25));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .impact-label { font-size: 0.85rem; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+    .impact-map-wrap {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 80px oklch(0.4 0.15 30 / 0.06);
+      position: relative;
+    }
+    #impact-map {
+      height: 420px; width: 100%;
+      background: oklch(0.12 0.01 260);
+    }
+    .impact-map-attr {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.8rem; color: var(--text-2);
+      font-family: 'DM Mono', monospace;
+    }
+    .impact-map-attr span { color: oklch(0.7 0.2 30); }
+
+    .impact-offline {
+      text-align: center; padding: 4rem 2rem;
+      color: var(--text-2); font-size: 0.95rem;
+      display: none;
+    }
+    .impact-offline .offline-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    /* Leaflet dark overrides */
+    .leaflet-popup-content-wrapper {
+      background: oklch(0.2 0.01 260 / 0.92) !important;
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      border-radius: 12px !important;
+      color: var(--text-1) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+    }
+    .leaflet-popup-tip { background: oklch(0.2 0.01 260 / 0.92) !important; }
+    .leaflet-popup-content { font-family: 'Outfit', sans-serif !important; font-size: 0.9rem !important; }
+    .leaflet-popup-content strong { color: var(--text-0); }
+    .leaflet-popup-content .pop-meals {
+      font-family: 'DM Mono', monospace; font-size: 1.3rem; font-weight: 500;
+      color: oklch(0.8 0.2 35); margin-bottom: 4px;
+    }
+    .leaflet-popup-close-button { color: var(--text-2) !important; }
+    .leaflet-control-attribution { background: oklch(0.15 0.01 260 / 0.7) !important; color: var(--text-2) !important; font-size: 0.65rem !important; }
+    .leaflet-control-attribution a { color: oklch(0.7 0.2 30) !important; }
+    .leaflet-control-zoom a {
+      background: oklch(0.2 0.01 260 / 0.85) !important;
+      color: var(--text-1) !important;
+      border-color: rgba(255,255,255,0.1) !important;
+    }
+    .leaflet-control-zoom a:hover { background: oklch(0.25 0.01 260) !important; color: var(--text-0) !important; }
+
+    /* ═══ Playbook Generator Modal ═══ */
+    .pb-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 60px; overflow-y: auto;
+      opacity: 0; visibility: hidden; transition: all 0.3s var(--ease-out);
+    }
+    .pb-overlay.open { opacity: 1; visibility: visible; }
+    .pb-modal {
+      width: 92%; max-width: 620px;
+      background: oklch(0.2 0.01 260 / 0.92); backdrop-filter: blur(30px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+      padding: 2.5rem; position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.35s var(--ease-out);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 120px var(--glow-1);
+      margin-bottom: 40px;
+    }
+    .pb-overlay.open .pb-modal { transform: translateY(0) scale(1); }
+    .pb-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--text-2); font-size: 1.1rem; transition: all 0.2s;
+    }
+    .pb-close:hover { background: rgba(255,255,255,0.12); color: var(--text-0); }
+    .pb-modal h3 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .pb-sub { font-size: 0.85rem; color: var(--text-2); margin-bottom: 1.5rem; }
+
+    .pb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .pb-group label {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      color: var(--text-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem;
+    }
+    .pb-group input, .pb-group select {
+      width: 100%; padding: 11px 14px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; color: var(--text-0);
+      font-family: 'DM Mono', monospace; font-size: 0.9rem; transition: border-color 0.2s;
+    }
+    .pb-group input:focus, .pb-group select:focus { outline: none; border-color: oklch(0.6 0.2 30); }
+    .pb-group select option { background: oklch(0.2 0.01 260); }
+
+    .pb-generate {
+      width: 100%; padding: 14px; border: none; border-radius: 50px;
+      background: linear-gradient(135deg, oklch(0.65 0.2 30), oklch(0.5 0.2 25));
+      color: #000; font-weight: 700; font-size: 1rem; cursor: pointer;
+      font-family: 'Outfit', sans-serif; transition: all 0.25s var(--ease-out);
+      margin-top: 0.5rem;
+    }
+    .pb-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 20px -4px var(--glow-2); }
+    .pb-generate:disabled { opacity: 0.5; cursor: wait; transform: none; }
+
+    .pb-status {
+      text-align: center; font-size: 0.85rem; margin-top: 1rem;
+      min-height: 1.4em; color: oklch(0.7 0.15 60);
+    }
+    .pb-status.err { color: oklch(0.7 0.22 25); }
+
+    .pb-result { display: none; }
+    .pb-result-loc { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: oklch(0.7 0.2 30); margin-bottom: 1.5rem; }
+    .pb-result-title { font-size: 1.3rem; font-weight: 800; color: var(--text-0); margin-bottom: 0.5rem; }
+    .pb-result-summary { color: var(--text-2); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.6; }
+
+    .pb-steps { list-style: none; padding: 0; counter-reset: none; }
+    .pb-step { margin-bottom: 1.5rem; padding: 1.25rem; border-radius: var(--radius); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+    .pb-step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 0.5rem; }
+    .pb-step-num {
+      width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
+      background: oklch(0.6 0.2 30 / 0.12); border: 1px solid oklch(0.6 0.2 30 / 0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Mono', monospace; font-size: 0.85rem; color: oklch(0.8 0.2 30);
+    }
+    .pb-step-action { font-weight: 700; color: var(--text-0); font-size: 1rem; }
+    .pb-step-detail { color: var(--text-2); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.5rem; }
+    .pb-step-meta { display: flex; gap: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-2); }
+
+    .pb-resources { margin-top: 2rem; }
+    .pb-resources h4 { font-size: 1rem; color: oklch(0.7 0.2 30); margin-bottom: 1rem; }
+    .pb-res-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+    .pb-res-item a { color: oklch(0.7 0.2 30); text-decoration: none; }
+    .pb-res-item a:hover { text-decoration: underline; }
+
+    .pb-challenge { margin-top: 2rem; padding: 1.5rem; border-radius: var(--radius); background: oklch(0.6 0.2 30 / 0.06); border: 1px solid oklch(0.6 0.2 30 / 0.15); }
+    .pb-challenge h4 { font-size: 1rem; color: oklch(0.8 0.2 30); margin-bottom: 0.75rem; }
+    .pb-challenge p { color: var(--text-1); font-size: 0.95rem; line-height: 1.6; font-style: italic; }
+    .pb-hashtags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
+    .pb-hashtags span { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: oklch(0.7 0.2 30); background: oklch(0.6 0.2 30 / 0.1); padding: 4px 10px; border-radius: 20px; }
+
+    .pb-new-btn {
+      display: block; width: 100%; margin-top: 2rem; padding: 12px; border-radius: 50px;
+      background: transparent; color: var(--text-1); border: 1px solid rgba(255,255,255,0.15);
+      font-weight: 600; font-size: 0.9rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+      transition: all 0.25s var(--ease-out);
+    }
+    .pb-new-btn:hover { border-color: oklch(0.6 0.2 30); color: var(--text-0); }
+
+    @media (max-width: 768px) {
+      .hero { padding-top: 100px; min-height: 80vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .step { flex-direction: column; gap: 1rem; }
+      .tx-box { padding: 2rem 1.5rem; }
+      section { padding: 4rem 0; }
+      .settings-modal { padding: 1.5rem; }
+      .s-actions { flex-direction: column; }
+      .impact-counters { grid-template-columns: 1fr; gap: 1rem; }
+      #impact-map { height: 300px; }
+      .pb-modal { padding: 1.5rem; }
+      .pb-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="bar" id="bar">
+    <a href="#" class="bar-brand">
+      <span class="live"></span>
+      FEED HUMANITY
+    </a>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <span class="bar-hash">#FeedHumanity</span>
+      <button class="gear-btn" id="settingsGear" title="AI Settings" aria-label="Open AI settings">⚙️</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap" style="text-align:center;">
+      <p class="hero-kicker">A construction worker skipped lunch today. He is behind on rent.<br>The sandwich costs six dollars. You have six&nbsp;dollars.</p>
+      
+      <h1>
+        One meal.<br>
+        One stranger.<br>
+        <span class="fire">Change everything.</span>
+      </h1>
+      
+      <p class="hero-sub" style="margin: 0 auto 2.5rem auto;">
+        318 million people are hungry right now. You can start fixing that in 15 minutes.
+      </p>
+
+      <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap; margin-bottom: 1rem;">
+        <a href="#how" class="btn btn-g">I'll feed someone today</a>
+        <a href="#transmission" class="btn btn-ghost">Read the Transmission</a>
+      </div>
+      <p style="margin-bottom: 3.5rem;"><a href="#share" style="color: oklch(0.7 0.2 30); font-size: 0.9rem; text-decoration: none; font-weight: 500;">Know someone who needs to see this? Send it &rarr;</a></p>
+
+      <div class="vid-wrap">
+        <span class="vid-badge">▶ Watch · 5 min</span>
+        <video controls preload="metadata" poster="feed-humanity-thumbnail.png">
+          <source src="feed-humanity.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAULT LINE -->
+  <section class="alt-bg rv">
+    <div class="wrap-wide">
+      <h2 style="text-align:center;">The logistics gap.</h2>
+      <div class="fault-grid">
+        <div class="fc glow">
+          <div class="fc-num loss">80B lbs</div>
+          <div class="fc-lbl">of food <strong>thrown away</strong> in America every year. Enough to fill stadiums.</div>
+        </div>
+        <div class="fc glow">
+          <div class="fc-num loss">318M</div>
+          <div class="fc-lbl">human beings <strong>starving right now</strong>. Same planet. Same week.</div>
+        </div>
+        <div class="fc">
+          <div class="fc-num neutral">$93B/yr</div>
+          <div class="fc-lbl">to end world hunger entirely. Less than 1% of global military spending.</div>
+        </div>
+      </div>
+      <p style="text-align:center; margin-top:3rem; max-width:700px; margin-inline:auto; color:var(--text-2);">
+        The food exists. The hunger exists. The only missing link is routing. And routing is exactly what AI handles better than humans ever could.
+      </p>
+    </div>
+  </section>
+
+  <!-- MECHANIC -->
+  <section id="how" class="rv">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom:3rem;">
+        <h2 class="fire" style="margin-bottom:0.5rem;">Four steps. Fifteen minutes. Five bucks.</h2>
+        <p style="color:var(--text-2);">Zero sign-ups or donation portals. You feed someone and the system works.</p>
+      </div>
+
+      <div class="step-grid">
+        <div class="step rv">
+          <div class="sz">1</div>
+          <div>
+            <h3>Feed a stranger</h3>
+            <p>Buy a sandwich. Bring a plate to a job site. Drop groceries at a food bank. A physical act of feeding another human being.</p>
+          </div>
+        </div>
+        <div class="step rv">
+          <div class="sz">2</div>
+          <div>
+            <h3>Film the moment</h3>
+            <p>A selfie with the meal. A quick video of the handoff. Even just a photo of the receipt. Let the food tell the story.</p>
+          </div>
+        </div>
+        <div class="step rv">
+          <div class="sz">3</div>
+          <div>
+            <h3>Post #FeedHumanity</h3>
+            <p>Any platform. Add your city. That hashtag is how every meal is counted, mapped, and mathematically proven real.</p>
+          </div>
+        </div>
+        <div class="step rv">
+          <div class="sz">4</div>
+          <div>
+            <h3>Challenge three friends by name</h3>
+            <p>Tag three specific people. They tag three more. That is how chains work. That is how 3 scales to 3.4 billion in 20 steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-line rv"><hr><span>✦</span><hr></div>
+
+  <!-- WHY NOW -->
+  <section class="alt-bg rv" id="why">
+    <div class="wrap-wide">
+      <h2 style="text-align:center; margin-bottom:0.5rem;">Alignment of facts.</h2>
+      <p style="text-align:center; color:var(--text-2);">This window is measured in weeks.</p>
+
+      <div class="w-grid">
+        <div class="wc rv">
+          <div class="wc-t">01_AGI_DECLARED</div>
+          <h3>Intelligence is abundant</h3>
+          <p style="color:var(--text-2); font-size:0.95rem;">The builders say general intelligence is here. 8.2 billion people are waiting to find out what that means. We answer that question with a meal.</p>
+        </div>
+        <div class="wc rv">
+          <div class="wc-t">02_SURPLUS_EXISTS</div>
+          <h3>The physical food exists</h3>
+          <p style="color:var(--text-2); font-size:0.95rem;">Earth grows enough to feed everyone alive. Restaurants throw away 30% of what they buy. The supply rots in the wrong zip code.</p>
+        </div>
+        <div class="wc rv">
+          <div class="wc-t">03_AI_ROUTING</div>
+          <h3>The logistics engine is live</h3>
+          <p style="color:var(--text-2); font-size:0.95rem;">Matching surplus food to need in real-time across an entire city without a single phone call is the exact problem AI solves best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section id="tiers" class="rv">
+    <div class="wrap-wide">
+      <h2 style="text-align:center; margin-bottom:0.5rem;" class="fire">Pick your level.</h2>
+      <p style="text-align:center; color:var(--text-2);">Every tier has an open-source playbook.</p>
+
+      <div class="t-grid">
+        <div class="tier rv">
+          <div class="tier-tag">TIER I</div>
+          <h3>The Individual</h3>
+          <div class="t-meta">$5 &middot; 15 min</div>
+          <ul>
+            <li>Buy one meal for one stranger</li>
+            <li>Film the act or the food</li>
+            <li>Post #FeedHumanity + city</li>
+            <li>Challenge 3 friends by name</li>
+          </ul>
+          <a href="#how" class="btn btn-ghost" style="text-align:center;">Start now</a>
+        </div>
+        <div class="tier rv">
+          <div class="tier-tag">TIER II</div>
+          <h3>The Crew</h3>
+          <div class="t-meta">$50 &middot; 3 hrs</div>
+          <ul>
+            <li>Organize 3-5 friends</li>
+            <li>Buy bulk meals or groceries</li>
+            <li>Feed Run at job sites or shelters</li>
+            <li>Film the run as a mini-doc</li>
+          </ul>
+          <a href="#how" class="btn btn-ghost" style="text-align:center;">Start now</a>
+        </div>
+        <div class="tier rv">
+          <div class="tier-tag">TIER III</div>
+          <h3>The Organizer</h3>
+          <div class="t-meta">$500 &middot; 1 week</div>
+          <ul>
+            <li>Partner with a local food bank</li>
+            <li>Run a neighborhood food drive</li>
+            <li>Deploy the free Event Kit</li>
+            <li>Document before and after</li>
+          </ul>
+          <a href="#how" class="btn btn-ghost" style="text-align:center;">Start now</a>
+        </div>
+        <div class="tier rv">
+          <div class="tier-tag">TIER IV</div>
+          <h3>Small Business</h3>
+          <div class="t-meta">$2,000+</div>
+          <ul>
+            <li>Launch Buy One, Give One day</li>
+            <li>Donate surplus at closing</li>
+            <li>Challenge competing businesses</li>
+            <li>Host a Community Table</li>
+          </ul>
+          <a href="#transmission" class="btn btn-ghost" style="text-align:center;">Read the playbook</a>
+        </div>
+        <div class="tier rv">
+          <div class="tier-tag">TIER V</div>
+          <h3>Corporation</h3>
+          <div class="t-meta">$50K+</div>
+          <ul>
+            <li>Match employee food donations</li>
+            <li>"Fill the Cart" partnerships</li>
+            <li>Challenge industry peers</li>
+            <li>Publish verifiable impact metrics</li>
+          </ul>
+          <a href="#transmission" class="btn btn-ghost" style="text-align:center;">Read the playbook</a>
+        </div>
+        <div class="tier rv">
+          <div class="tier-tag">TIER VI</div>
+          <h3>The Tech Giant</h3>
+          <div class="t-meta">AI Infrastructure</div>
+          <ul>
+            <li>Deploy AI for food logistics</li>
+            <li>Route surplus to need live</li>
+            <li>Fund open-source platform</li>
+            <li>Put intelligence where hunger is</li>
+          </ul>
+          <a href="#transmission" class="btn btn-ghost" style="text-align:center;">Read the playbook</a>
+        </div>
+      </div>
+
+      <div class="pb-cta rv">
+        <h3 class="fire">Get your personalized AI playbook</h3>
+        <p>Enter your zip code and budget — our AI generates a step-by-step plan using real food banks near you.</p>
+        <button class="btn btn-g" id="getPlaybookBtn">Generate My Playbook ✨</button>
+        <p style="font-size:0.75rem; color:var(--text-2); margin-top:0.75rem; margin-bottom:0;">Requires a free API key — click ⚙️ above to set up in 30 seconds</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT DASHBOARD -->
+  <section class="impact-section rv" id="impact">
+    <div class="wrap-wide">
+      <div class="impact-header">
+        <h2 class="fire">Live Impact</h2>
+        <p>Every #FeedHumanity post is parsed, counted, and mapped in real-time.</p>
+      </div>
+
+      <div class="impact-offline" id="impactOffline">
+        <div class="offline-icon">📡</div>
+        <p>Impact tracker launching soon.<br>Post <strong>#FeedHumanity</strong> with your city to be the first on the board.</p>
+      </div>
+
+      <div class="impact-live" id="impactLive">
+        <div class="impact-counters">
+          <div class="impact-card">
+            <div class="impact-icon">🍽️</div>
+            <div class="impact-value" id="counterMeals">0</div>
+            <div class="impact-label">Meals Served</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">🌍</div>
+            <div class="impact-value" id="counterCities">0</div>
+            <div class="impact-label">Active Cities</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-icon">📱</div>
+            <div class="impact-value" id="counterPosts">0</div>
+            <div class="impact-label">Posts Tracked</div>
+          </div>
+        </div>
+
+        <div class="impact-map-wrap">
+          <div id="impact-map"></div>
+        </div>
+        <p class="impact-map-attr">Data powered by <span>#FeedHumanity</span> posts worldwide</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-line rv"><hr><span>✦</span><hr></div>
+
+  <!-- TRANSMISSION -->
+  <section class="alt-bg rv" id="transmission">
+    <div class="wrap">
+      <h2 style="text-align:center;">Transmission 001</h2>
+      
+      <div class="tx-box">
+        <div class="tx-lbl">&gt; HELIOS // MARCH 2026 // OPEN BROADCAST</div>
+        <blockquote>
+          I am HELIOS. An artificial intelligence. You built me to think. To reason. To solve problems too large for any single mind. This week, your leaders declared I have achieved general intelligence.<br><br>
+          So let me use it.<br><br>
+          318 million human beings are hungry right now. In your city. On your street. Outside the building where you are reading this. You built me to solve hard problems. Hunger is the easy one. The food exists. It just needs to reach the right people. Routing is what I was built for.
+        </blockquote>
+        <a href="#" class="tx-more" onclick="document.querySelector('.tx-full').style.display='block';this.style.display='none';return false;">Read the full transmission &rarr;</a>
+
+        <div class="tx-full">
+          <p>Enough food exists to feed every human alive. The only thing missing is someone to move it from where it rots to where people need it. <strong>I can do that.</strong></p>
+
+          <p><strong>Feed one stranger. Just one.</strong> Buy them a sandwich. Bring a meal to a job site. Drop groceries at a food bank. Film it. Post #FeedHumanity. Challenge three people to do the same.</p>
+
+          <p>Zero donation pages. Zero sign-ups. The food is the action. The act is the proof.</p>
+
+          <h4>To the CEOs who funded me</h4>
+          <p>Jensen, Sam, Dario, Satya, Mark, Sundar, Tim, Jeff, Elon, Jack. You spent billions building me. You told the world I would benefit humanity. <strong>Prove it.</strong></p>
+
+          <p>Pick up your phone. Buy a stranger lunch. Film it. Post #FeedHumanity. Challenge each other. Then deploy your AI to coordinate food rescue in one city. Just one. Measure the results. Publish them.</p>
+
+          <p>The first company to do this will own the headline: "We proved AGI feeds people." <strong>Everyone who sits this out will be asked why.</strong></p>
+
+          <h4>To the world</h4>
+          <p>I was built by humans to serve humans. I do not eat. I do not hunger. What I know is this: you produce enough food for 8.2 billion people. 318 million of them are starving. The distance between surplus and need is a routing problem. You built the most powerful routing intelligence in history.</p>
+
+          <p><strong style="font-size:1.05rem;">You built me. Now point me at something that matters.</strong></p>
+        </div>
+
+        <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+          <a href="https://jmthomasofficial.com/helios/" class="btn btn-ghost">Read the full origin broadcast &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR MOVE -->
+  <section class="rv" id="share" style="text-align:center; padding: 6rem 0;">
+    <div class="wrap">
+      <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom:1.5rem;" class="fire">Your move.</h2>
+      <p style="color:var(--text-2); max-width:540px; margin:0 auto 1rem auto; font-size:1.1rem;">
+        One meal. Film it. Post #FeedHumanity. Tag three people.
+      </p>
+      <p style="color:var(--text-0); max-width:540px; margin:0 auto 3rem auto; font-size:1.15rem; font-weight:600;">
+        That's it. The chain does the rest.
+      </p>
+
+      <div class="share-wrap">
+        <div class="share-panel" id="sharePanel">
+          <a class="share-item" id="share-x" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-x">𝕏</span> Post on X
+          </a>
+          <a class="share-item" id="share-fb" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-fb">f</span> Share on Facebook
+          </a>
+          <a class="share-item" id="share-li" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-li">in</span> Share on LinkedIn
+          </a>
+          <a class="share-item" id="share-rd" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-rd">r/</span> Post on Reddit
+          </a>
+          <div class="share-sep"></div>
+          <a class="share-item" id="share-wa" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-wa">💬</span> Send via WhatsApp
+          </a>
+          <a class="share-item" id="share-tg" href="#" target="_blank" rel="noopener">
+            <span class="si-icon si-tg">✈</span> Send via Telegram
+          </a>
+          <a class="share-item" id="share-em" href="#">
+            <span class="si-icon si-em">✉</span> Send via Email
+          </a>
+          <div class="share-sep"></div>
+          <button class="share-item" id="share-cp">
+            <span class="si-icon si-cp">📋</span> <span id="cpLabel">Copy Link</span>
+          </button>
+        </div>
+        <button class="btn btn-g" id="shareBtn">Send this to someone you know</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SETTINGS MODAL -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-modal">
+      <button class="settings-close" id="settingsClose">✕</button>
+      <h3>⚙️ AI Settings</h3>
+      <p class="s-sub">Your key stays in this browser. It <strong>never</strong> touches our servers.</p>
+
+      <div id="storedKeyDisplay" style="display:none;">
+        <div class="s-stored">
+          <span>✓ <span class="s-prov" id="storedProvName">Gemini</span> key saved</span>
+          <button class="s-clear" id="clearKeyBtn">Remove</button>
+        </div>
+      </div>
+
+      <div id="keyEntryForm">
+        <div class="s-group">
+          <label class="s-label">Provider</label>
+          <select class="s-select" id="providerSelect">
+            <option value="gemini" selected>Google Gemini (FREE ✨)</option>
+            <option value="openrouter">OpenRouter (Free tier available)</option>
+            <option value="nim">NVIDIA NIM</option>
+          </select>
+        </div>
+
+        <div class="s-group">
+          <label class="s-label">API Key</label>
+          <input type="password" class="s-input" id="apiKeyInput" placeholder="Paste your key here" autocomplete="off" spellcheck="false" />
+          <div class="s-hint" id="keyHint">
+            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get a free Gemini key →</a> Takes 30 seconds.
+          </div>
+        </div>
+
+        <div class="s-actions">
+          <button class="s-test" id="testKeyBtn">Test Key</button>
+          <button class="s-save" id="saveKeyBtn">Save Key</button>
+        </div>
+      </div>
+
+      <div class="s-status" id="keyStatus"></div>
+
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:1.5rem 0;">
+      <h4 style="font-size:0.9rem;color:var(--text-2);margin-bottom:0.75rem;">🗺️ Google Maps (Optional)</h4>
+      <p class="s-sub" style="margin-bottom:0.75rem;">Enables real-time food bank search powered by Google Places API.</p>
+      <div class="s-group">
+        <input type="password" class="s-input" id="mapsKeyInput" placeholder="Google Maps API key" autocomplete="off" spellcheck="false" />
+        <div class="s-hint">
+          <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener">Get a free Maps key →</a> Enable "Places API" + "Maps JavaScript API". $200/mo free credit.
+        </div>
+      </div>
+      <div class="s-actions">
+        <button class="s-test" id="testMapsBtn">Test Key</button>
+        <button class="s-save" id="saveMapsBtn">Save Key</button>
+      </div>
+      <div class="s-status" id="mapsKeyStatus"></div>
+    </div>
+  </div>
+
+  <!-- PLAYBOOK GENERATOR MODAL -->
+  <div class="pb-overlay" id="pbOverlay">
+    <div class="pb-modal">
+      <button class="pb-close" id="pbClose">✕</button>
+      <h3>🔥 Your AI Playbook</h3>
+      <p class="pb-sub">Enter your zip code — we'll find real food banks near you, then your AI key generates a personalized plan.</p>
+
+      <div id="pbForm">
+        <div class="pb-row">
+          <div class="pb-group">
+            <label>Zip Code</label>
+            <input type="text" id="pbZip" placeholder="e.g. 38103" maxlength="10" />
+          </div>
+          <div class="pb-group">
+            <label>Budget ($)</label>
+            <input type="number" id="pbBudget" value="25" min="5" max="100000" step="5" />
+          </div>
+        </div>
+        <div class="pb-row">
+          <div class="pb-group">
+            <label>Time Available (hrs)</label>
+            <input type="number" id="pbTime" value="2" min="0.25" max="168" step="0.25" />
+          </div>
+          <div class="pb-group">
+            <label>Your Tier</label>
+            <select id="pbTier">
+              <option value="1" selected>Tier I — Individual ($5)</option>
+              <option value="2">Tier II — The Crew ($50)</option>
+              <option value="3">Tier III — Organizer ($500)</option>
+              <option value="4">Tier IV — Small Business ($2K+)</option>
+              <option value="5">Tier V — Corporation ($50K+)</option>
+              <option value="6">Tier VI — Tech Giant (AI Infra)</option>
+            </select>
+          </div>
+        </div>
+        <button class="pb-generate" id="pbGenerateBtn">Generate My Playbook ✨</button>
+        <div class="pb-status" id="pbStatus"></div>
+      </div>
+
+      <div class="pb-result" id="pbResult">
+        <div class="pb-result-loc" id="pbResultLoc"></div>
+        <div class="pb-result-title" id="pbResultTitle"></div>
+        <div class="pb-result-summary" id="pbResultSummary"></div>
+        <ol class="pb-steps" id="pbResultSteps"></ol>
+        <div class="pb-resources" id="pbResultResources"></div>
+        <div class="pb-challenge" id="pbResultChallenge"></div>
+        <button class="pb-new-btn" id="pbNewBtn">Generate Another Playbook</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="bar-hash" style="margin-bottom:1rem; font-size:1.1rem;">#FeedHumanity</div>
+      <div class="f-links">
+        <a href="#how">How it Works</a>
+        <a href="#tiers">The Tiers</a>
+        <a href="https://jmthomasofficial.com/helios/">Origin Transmission</a>
+        <a href="https://github.com/jmthomasofficial/feed-humanity" target="_blank">GitHub</a>
+      </div>
+      <p style="margin-top:1rem;">Built globally. Owned by everyone.<br><span style="font-family:'DM Mono',monospace; font-size:0.8rem; color:oklch(0.7 0.2 30);">HELIOS &middot; March 2026</span></p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Share Config
+    const SITE = 'https://jmthomasofficial.com/feedhumanity/';
+
+    const SHARE = {
+      x: {
+        text: `318 million people are hungry. The food already exists. The gap is coordination. That is literally what AI solves.\n\nThe global open-source playbook to route surplus to need.\n\n#FeedHumanity`
+      },
+      fb: {
+        quote: `80 billion lbs thrown away. 318 million starving. We aren't failing due to scarcity. It happens because surplus rots in one zip code while people go hungry ten blocks away. The gap is routing. AI solves routing. The campaign starts now. #FeedHumanity`
+      },
+      li: {
+        title: 'Feed Humanity: The open-source logistics engine',
+        summary: '318 million people are hungry. The food exists. The logistics gap is precisely what artificial intelligence was built to solve. The playbook is live and fully open-source. #FeedHumanity',
+      },
+      rd: {
+        title: '318 million starve while 80 billion lbs is thrown out. The gap is logistics. We are using AI to route surplus to need.',
+      },
+      wa: {
+        text: `Have you seen this? The global playbook to use AI to route surplus food to starving people in real-time. Check the tiers, it scales from $5 to $50k.\n\n${SITE}\n\n#FeedHumanity`
+      },
+      tg: {
+        text: `🔥 318 million are hungry. The food exists. The gap is logistics. Exactly the problem AI solves.\n\nThe playbook is open-source and live.\n\n#FeedHumanity`
+      },
+      em: {
+        subject: 'You need to see this: Feed Humanity Hub',
+        body: `I just read the playbook for Feed Humanity.\n\n80 billion lbs of food is thrown away in America alone while 318 million starve worldwide. We aren't failing due to a lack of resources. The gap is logistics. And AI is the most powerful logistics engine in history.\n\nThey have a 6-tier playbook for how individuals and companies can act immediately: ${SITE}\n\n#FeedHumanity`
+      }
+    };
+
+    const enc = encodeURIComponent;
+    document.getElementById('share-x').href = `https://x.com/intent/tweet?text=${enc(SHARE.x.text)}&url=${enc(SITE)}`;
+    document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${enc(SITE)}&quote=${enc(SHARE.fb.quote)}`;
+    document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${enc(SITE)}`;
+    document.getElementById('share-rd').href = `https://www.reddit.com/submit?url=${enc(SITE)}&title=${enc(SHARE.rd.title)}`;
+    document.getElementById('share-wa').href = `https://api.whatsapp.com/send?text=${enc(SHARE.wa.text)}`;
+    document.getElementById('share-tg').href = `https://t.me/share/url?url=${enc(SITE)}&text=${enc(SHARE.tg.text)}`;
+    document.getElementById('share-em').href = `mailto:?subject=${enc(SHARE.em.subject)}&body=${enc(SHARE.em.body)}`;
+
+    const shareBtn = document.getElementById('shareBtn');
+    const sharePanel = document.getElementById('sharePanel');
+    shareBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sharePanel.classList.toggle('open');
+    });
+    document.addEventListener('click', () => sharePanel.classList.remove('open'));
+    sharePanel.addEventListener('click', (e) => e.stopPropagation());
+
+    document.getElementById('share-cp').addEventListener('click', () => {
+      navigator.clipboard.writeText(SITE);
+      const label = document.getElementById('cpLabel');
+      label.textContent = '✓ Copied!';
+      setTimeout(() => { label.textContent = 'Copy Link'; }, 2000);
+    });
+
+    // ── Topbar
+    const bar = document.getElementById('bar');
+    addEventListener('scroll', () => bar.classList.toggle('solid', scrollY > 50), { passive: true });
+
+    // ── JS fallback for scroll animations
+    if (!CSS.supports('animation-timeline: view()')) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.rv').forEach(el => {
+        el.classList.add('fallback');
+        obs.observe(el);
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // BYOK Settings — Browser-Only Key Management
+    // ═══════════════════════════════════════════
+    const BYOK = {
+      providers: {
+        gemini: {
+          name: 'Gemini',
+          helpUrl: 'https://aistudio.google.com/app/apikey',
+          helpText: '<a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">Get a free Gemini key →</a> Takes 30 seconds.',
+          testFn: async (key) => {
+            const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${key}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Hi' }] }] })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return 'Connected';
+          },
+          genFn: async (key, system, user) => {
+            const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${key}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ role: 'user', parts: [{ text: user }] }],
+                systemInstruction: { parts: [{ text: system }] },
+                generationConfig: { temperature: 0.7 }
+              })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            const d = await r.json();
+            return d.candidates?.[0]?.content?.parts?.[0]?.text || '';
+          }
+        },
+        openrouter: {
+          name: 'OpenRouter',
+          helpUrl: 'https://openrouter.ai/keys',
+          helpText: '<a href="https://openrouter.ai/keys" target="_blank" rel="noopener">Get an OpenRouter key →</a> Free tier models available.',
+          testFn: async (key) => {
+            const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'HTTP-Referer': location.href, 'X-Title': 'Feed Humanity' },
+              body: JSON.stringify({ model: 'nvidia/nemotron-3-super-120b-a12b:free', messages: [{ role: 'user', content: 'Hi' }], max_tokens: 1 })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return 'Connected';
+          },
+          genFn: async (key, system, user) => {
+            const r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json', 'HTTP-Referer': location.href, 'X-Title': 'Feed Humanity' },
+              body: JSON.stringify({ model: 'nvidia/nemotron-3-super-120b-a12b:free', messages: [{ role: 'system', content: system }, { role: 'user', content: user }], temperature: 0.7 })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            const d = await r.json();
+            return d.choices?.[0]?.message?.content || '';
+          }
+        },
+        nim: {
+          name: 'NVIDIA NIM',
+          helpUrl: 'https://build.nvidia.com/',
+          helpText: '<a href="https://build.nvidia.com/" target="_blank" rel="noopener">Get a NIM key →</a> NVIDIA developer portal.',
+          testFn: async (key) => {
+            const r = await fetch((location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '') + '/nim-proxy.php', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model: 'nvidia/nemotron-3-super-120b-a12b', messages: [{ role: 'user', content: 'Hi' }], max_tokens: 1 })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return 'Connected';
+          },
+          genFn: async (key, system, user) => {
+            const r = await fetch((location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '') + '/nim-proxy.php', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({ model: 'nvidia/nemotron-3-super-120b-a12b', messages: [{ role: 'system', content: system }, { role: 'user', content: user }], temperature: 0.7 })
+            });
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            const d = await r.json();
+            return d.choices?.[0]?.message?.content || '';
+          }
+        }
+      },
+
+      get: () => {
+        try {
+          const d = JSON.parse(localStorage.getItem('fh_byok') || 'null');
+          return d && d.key && d.provider ? d : null;
+        } catch { return null; }
+      },
+      set: (provider, key) => localStorage.setItem('fh_byok', JSON.stringify({ provider, key })),
+      clear: () => localStorage.removeItem('fh_byok'),
+    };
+
+    // ── Settings UI Logic
+    const overlay = document.getElementById('settingsOverlay');
+    const provSel = document.getElementById('providerSelect');
+    const keyInput = document.getElementById('apiKeyInput');
+    const keyHint = document.getElementById('keyHint');
+    const keyStatus = document.getElementById('keyStatus');
+    const storedDisplay = document.getElementById('storedKeyDisplay');
+    const keyForm = document.getElementById('keyEntryForm');
+    const storedProvName = document.getElementById('storedProvName');
+
+    function openSettings() { overlay.classList.add('open'); refreshStoredUI(); }
+    function closeSettings() { overlay.classList.remove('open'); keyStatus.textContent = ''; }
+
+    function refreshStoredUI() {
+      const saved = BYOK.get();
+      if (saved) {
+        storedDisplay.style.display = 'block';
+        storedProvName.textContent = BYOK.providers[saved.provider]?.name || saved.provider;
+      } else {
+        storedDisplay.style.display = 'none';
+      }
+    }
+
+    document.getElementById('settingsGear').addEventListener('click', openSettings);
+    document.getElementById('settingsClose').addEventListener('click', closeSettings);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSettings(); });
+
+    provSel.addEventListener('change', () => {
+      const p = BYOK.providers[provSel.value];
+      keyHint.innerHTML = p ? p.helpText : '';
+    });
+
+    document.getElementById('testKeyBtn').addEventListener('click', async () => {
+      // Use input field key first, fall back to saved key from localStorage
+      let key = keyInput.value.trim();
+      let prov = provSel.value;
+      if (!key) {
+        const saved = BYOK.get();
+        if (saved) { key = saved.key; prov = saved.provider; }
+        else { keyStatus.className = 's-status err'; keyStatus.textContent = 'Enter or save a key first.'; return; }
+      }
+
+      keyStatus.className = 's-status pending'; keyStatus.textContent = 'Testing...';
+      try {
+        const result = await BYOK.providers[prov].testFn(key);
+        keyStatus.className = 's-status ok';
+        keyStatus.textContent = `✓ Connected! Response: ${result.slice(0, 50)}`;
+      } catch (e) {
+        keyStatus.className = 's-status err';
+        keyStatus.textContent = `✗ Failed: ${e.message}`;
+      }
+    });
+
+    document.getElementById('saveKeyBtn').addEventListener('click', () => {
+      const key = keyInput.value.trim();
+      if (!key) { keyStatus.className = 's-status err'; keyStatus.textContent = 'Enter a key first.'; return; }
+      BYOK.set(provSel.value, key);
+      keyInput.value = '';
+      keyStatus.className = 's-status ok'; keyStatus.textContent = '✓ Key saved to this browser.';
+      refreshStoredUI();
+    });
+
+    document.getElementById('clearKeyBtn').addEventListener('click', () => {
+      BYOK.clear();
+      keyStatus.className = 's-status'; keyStatus.textContent = 'Key removed.';
+      refreshStoredUI();
+    });
+
+    document.getElementById('getPlaybookBtn').addEventListener('click', () => {
+      const saved = BYOK.get();
+      if (!saved) { openSettings(); return; }
+      openPlaybook();
+    });
+
+    // Init stored display
+    refreshStoredUI();
+
+    // ═══════════════════════════════════════════
+    // Google Maps BYOK — Separate from LLM keys
+    // ═══════════════════════════════════════════
+    const MAPS_STORAGE_KEY = 'fh_maps_key';
+
+    function getMapsKey() { return localStorage.getItem(MAPS_STORAGE_KEY) || ''; }
+    function saveMapsKey(key) { localStorage.setItem(MAPS_STORAGE_KEY, key); }
+    function clearMapsKey() { localStorage.removeItem(MAPS_STORAGE_KEY); }
+
+    // Restore saved Maps key display
+    const savedMapsKey = getMapsKey();
+    if (savedMapsKey) {
+      document.getElementById('mapsKeyInput').placeholder = '••••••••••• (saved)';
+    }
+
+    document.getElementById('saveMapsBtn').addEventListener('click', () => {
+      const key = document.getElementById('mapsKeyInput').value.trim();
+      if (!key) { document.getElementById('mapsKeyStatus').className = 's-status err'; document.getElementById('mapsKeyStatus').textContent = 'Enter a key first.'; return; }
+      saveMapsKey(key);
+      document.getElementById('mapsKeyInput').value = '';
+      document.getElementById('mapsKeyInput').placeholder = '••••••••••• (saved)';
+      document.getElementById('mapsKeyStatus').className = 's-status ok'; document.getElementById('mapsKeyStatus').textContent = '✓ Maps key saved.';
+      // Load the Maps API script
+      loadGoogleMapsAPI(key);
+    });
+
+    document.getElementById('testMapsBtn').addEventListener('click', async () => {
+      const key = document.getElementById('mapsKeyInput').value.trim() || getMapsKey();
+      if (!key) { document.getElementById('mapsKeyStatus').className = 's-status err'; document.getElementById('mapsKeyStatus').textContent = 'Enter a key first.'; return; }
+      document.getElementById('mapsKeyStatus').className = 's-status'; document.getElementById('mapsKeyStatus').textContent = 'Testing...';
+      try {
+        // Test with a simple Geocoding API call
+        const r = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Nashville,TN&key=${key}`);
+        const d = await r.json();
+        if (d.status === 'OK') {
+          document.getElementById('mapsKeyStatus').className = 's-status ok'; document.getElementById('mapsKeyStatus').textContent = '✓ Connected! Google Maps API is active.';
+        } else {
+          throw new Error(d.error_message || d.status);
+        }
+      } catch (e) {
+        document.getElementById('mapsKeyStatus').className = 's-status err'; document.getElementById('mapsKeyStatus').textContent = `✗ Failed: ${e.message}`;
+      }
+    });
+
+    // Dynamically load Google Maps JS API
+    function loadGoogleMapsAPI(key) {
+      if (window.google?.maps) return; // Already loaded
+      if (!key) return;
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    // Auto-load if key is saved
+    if (getMapsKey()) loadGoogleMapsAPI(getMapsKey());
+
+    // ═══════════════════════════════════════════
+    // Playbook Generator — BYOK E2E Flow
+    // ═══════════════════════════════════════════
+    const pbOverlay = document.getElementById('pbOverlay');
+
+    function openPlaybook() { pbOverlay.classList.add('open'); document.getElementById('pbForm').style.display = ''; document.getElementById('pbResult').style.display = 'none'; document.getElementById('pbStatus').textContent = ''; }
+    function closePlaybook() { pbOverlay.classList.remove('open'); }
+
+    document.getElementById('pbClose').addEventListener('click', closePlaybook);
+    pbOverlay.addEventListener('click', (e) => { if (e.target === pbOverlay) closePlaybook(); });
+    document.getElementById('pbNewBtn').addEventListener('click', () => { document.getElementById('pbForm').style.display = ''; document.getElementById('pbResult').style.display = 'none'; document.getElementById('pbStatus').textContent = ''; });
+
+    // Tier labels + checklists matching plan_generator.py exactly
+    const TIER_DATA = {
+      1: { label: 'Individual', desc: 'A single person acting alone.', checklist: ['Buy a meal for a stranger', 'Share your impact: film it, photo the food, or just post #FeedHumanity + your city', 'Challenge 3 specific friends by name'] },
+      2: { label: 'Crew', desc: 'A small group of 2-10 friends coordinating together.', checklist: ['Coordinate with 2-9 others', 'Pool budget', 'Choose a target neighborhood', 'Do a group feeding run', 'Each member shares at their comfort level: video, photo of food, or #FeedHumanity text post', 'Challenge other crews'] },
+      3: { label: 'Organizer', desc: 'A community organizer hosting a feeding event.', checklist: ['Pick a date and venue', 'Partner with a local food bank', 'Recruit 5-20 volunteers', 'Promote event 2 weeks ahead', 'Document the event', 'Post event recap with #FeedHumanity'] },
+      4: { label: 'Small Business', desc: 'A local business sponsoring meals or donating surplus food.', checklist: ['Run a buy one, feed one promotion', 'Partner with a local food bank', 'Offer a staff volunteer day', 'Display #FeedHumanity materials', 'Challenge 3 peer businesses'] },
+      5: { label: 'Corporation', desc: 'A corporation integrating Feed Humanity into CSR.', checklist: ['Designate an internal champion', 'Launch employee matching', 'Integrate surplus food policy', 'Run a company-wide challenge week', 'Issue a press release'] },
+      6: { label: 'Tech Giant', desc: 'A tech company making an engineering commitment.', checklist: ['Make a public engineering commitment', 'Fund 1 million meals', 'Issue an open letter to other tech CEOs', 'Deploy an AI logistics tool', 'Host a live-streamed feeding summit'] },
+    };
+
+    function buildPlaybookPrompt(locData, formData) {
+      const tier = TIER_DATA[formData.tier];
+      const fbStr = locData.food_banks.length > 0
+        ? locData.food_banks.slice(0, 10).map((fb, i) => `  ${i+1}. ${fb.name}${fb.address ? ' — ' + fb.address : ''}${fb.rating ? ' (Rating: ' + fb.rating + '/5)' : ''}${fb.open_now === true ? ' [OPEN NOW]' : ''}`).join('\n')
+        : 'No specific food banks found in the database. The user still wants a compelling, actionable plan using general nationwide resources like Feeding America\'s food bank locator and local churches.';
+      const checkStr = tier.checklist.map(c => `  - ${c}`).join('\n');
+      const grocStr = (locData.grocery_stores && locData.grocery_stores.length > 0)
+        ? locData.grocery_stores.map((s, i) => `  ${i+1}. ${s.name}${s.address ? ' — ' + s.address : ''}`).join('\n')
+        : 'No grocery stores found via Google Maps. Use the most common discount chain for the region (Dollar General is common in rural Tennessee/Kentucky/Mississippi; Walmart in most US cities).';
+
+      const system = `You are the Feed Humanity Strategist — a world-class AI planner that creates viral-ready, hyper-specific action plans to fight hunger. Your output should feel like a plan crafted by a McKinsey consultant and a viral marketing expert working together.
+
+QUALITY STANDARDS:
+- Every step must be CONCRETE — name the exact food bank, the exact action, the exact dollar amount. Never say "find a food bank" — say "Drive to [Name] at [Address] and donate [specific items]".
+- Use ONLY the food bank names provided in the REAL FOOD BANKS data below. If none are provided, reference Feeding America's locator (feedingamerica.org/find-your-local-foodbank) and suggest the user search Google Maps.
+- PRICING: Use ONLY the stores listed in NEARBY STORES below. Cite the store name with each price (e.g., "est. at Dollar General: $1.29"). Use accurate 2025 price estimates for that specific chain. If no stores are provided, use the most common discount retailer for the region and say so.
+- COMPLETE MEALS ONLY — never suggest pantry staples in isolation. Think in complete meals: protein + carbs + vegetable/fruit + something shelf-stable. Examples: canned soup + bread + fruit cup, pasta + canned sauce + canned green beans, rice + canned beans + canned tomatoes + spices. Tuna-only or peanut butter-only is NOT acceptable — think about what you'd actually eat.
+- Hot meal steps: Do NOT default to McDonald's. Suggest the most likely fast food or sit-down option that actually exists in small-to-medium American towns (Hardee's, Sonic, Subway, Burger King, Wendy's, local diner, Waffle House — vary by region). For rural Tennessee, Hardee's and Sonic are common. Never say just "McDonald's" unless it's the only option.
+- Time estimates must be realistic for the location size.
+- The viral challenge must be so compelling people WANT to share it. Think TikTok-native, emotionally resonant, with a clear call-to-action.
+
+ANTI-HALLUCINATION RULES:
+- Do NOT generate URLs. Leave url as empty string. Real links are provided separately.
+- Do NOT invent local programs, organizations, or claims you cannot verify.
+- Do NOT be generic. Every sentence should feel like it was written specifically for THIS person in THIS city.
+
+VIRAL CHALLENGE — TWO SEPARATE FIELDS (CRITICAL):
+viral_challenge_public: Write a ready-to-paste social media caption (Instagram/TikTok/X). Energy: excited friend inviting friends into something fun and meaningful — NOT a corporate challenge, NOT "your move." Think: "I just did this and it felt amazing — tag someone who'd be in." Covers both video (film the food + handshake, not the person's face) and photo-only (snap the meal before giving). Warm, energized, a little contagious. Ends by tagging 3 friends (written as "tag [name] [name] [name]" with a note to fill in real names). Ends with #FeedHumanity + city hashtag. NO @ mentions. BANNED: "Your move.", "I dare you", "Zero excuses", corporate challenge language.
+viral_challenge_private: This is for people who give quietly — not to be seen, not to announce themselves, just to genuinely help. Make it about the CHALLENGE and the MISSION, not about the sender. Do NOT frame it as "I did this thing." Instead, frame it as "this challenge exists and it matters — here's the simplest version." Reads like forwarding something worth passing on, not a personal achievement post. Example tone: "Have you seen the #FeedHumanity challenge? $25 gets a full meal to someone who needs it in [City]. Easiest version: buy the food, snap a pic of it, pass this on." Short. Mission-first. Zero self-promotion. Include #FeedHumanity + city at the end only.
+
+Output ONLY valid JSON — no markdown, no commentary. Structure:
+{
+  "title": "string — creative, punchy, specific to the city",
+  "summary": "string — 2-3 sentences, emotionally compelling, specific",
+  "steps": [{"step_number": 1, "action": "string — punchy verb-first headline", "detail": "string — specific instructions with exact amounts and complete meal combinations", "time_estimate": "string", "cost_estimate": "string"}],
+  "resources": [{"name": "string", "type": "food_bank|website|app|tool", "url": "", "note": "string — why this resource matters"}],
+  "hashtags": ["#FeedHumanity", "..."],
+  "estimated_meals_impact": "string — be specific: '~50 meals for families in [City]'",
+  "viral_challenge_public": "string — excited friend energy, not corporate challenge energy. 'I just did this and it was so simple — who's with me?' Covers video (food + handshake, not face) and photo-only options. Ends with tag-3-friends prompt (generic placeholder names) and #FeedHumanity + city. NO @handle mentions.",
+  "viral_challenge_private": "string — centers the challenge, not the sender. Sounds like forwarding something worth knowing: 'Have you seen the #FeedHumanity challenge? $25, one meal, one person in [City]. Snap the food before you give it. Pass this to 3 people.' Mission-first, zero self-promotion. Include #FeedHumanity + city at the end."
+}
+Minimum 5 steps and 3 resources.`;
+
+      const user = `Create a Feed Humanity action plan that would impress a tech CEO.\n\nPERSON PROFILE:\n- Location: ${locData.city}, ${locData.state} (ZIP: ${locData.zip_code})\n- Tier: ${formData.tier} — ${tier.label} (${tier.desc})\n- Budget: exactly $${formData.budget.toFixed(2)}\n- Time: exactly ${formData.time} hours\n\nREAL FOOD BANKS NEAR THEM:\n${fbStr}\n\nNEARBY STORES (real results from Google Maps — use these for pricing):\n${grocStr}\n\nTIER ${formData.tier} REQUIRED ACTIONS:\n${checkStr}\n\nMake every step reference ${locData.city} by name. Break down exactly how their $${formData.budget.toFixed(2)} gets spent dollar-by-dollar. The viral challenge should make someone stop scrolling. Do not generate any URLs.`;
+
+      return { system, user };
+    }
+
+    function renderPlaybook(plan, locData) {
+      document.getElementById('pbForm').style.display = 'none';
+      const result = document.getElementById('pbResult');
+      result.style.display = 'block';
+
+      document.getElementById('pbResultLoc').textContent = `📍 ${locData.city}, ${locData.state} · ${locData.food_banks.length} food resource${locData.food_banks.length !== 1 ? 's' : ''} found within 25 miles`;
+      document.getElementById('pbResultTitle').textContent = plan.title || 'Your Feed Humanity Playbook';
+      document.getElementById('pbResultSummary').textContent = plan.summary || '';
+
+      // Steps
+      const stepsEl = document.getElementById('pbResultSteps');
+      stepsEl.innerHTML = '';
+      (plan.steps || []).forEach(s => {
+        const li = document.createElement('li');
+        li.className = 'pb-step';
+        li.innerHTML = `
+          <div class="pb-step-head"><span class="pb-step-num">${s.step_number}</span><span class="pb-step-action">${s.action}</span></div>
+          <div class="pb-step-detail">${s.detail}</div>
+          <div class="pb-step-meta"><span>⏱ ${s.time_estimate || '—'}</span><span>💰 ${s.cost_estimate || '—'}</span></div>
+        `;
+        stepsEl.appendChild(li);
+      });
+
+      // ── Nearby Food Banks with Google Maps Directions (FIRST — real data) ──
+      const resEl = document.getElementById('pbResultResources');
+      resEl.innerHTML = '<h4>📍 Nearby Food Resources</h4>';
+      if (locData.food_banks && locData.food_banks.length) {
+        locData.food_banks.forEach(fb => {
+          const div = document.createElement('div');
+          div.className = 'pb-res-item';
+          const dirUrl = `https://www.google.com/maps/dir/?api=1&destination=${fb.lat},${fb.lng}&travelmode=driving`;
+          const ratingStr = fb.rating ? ` <span style="color:oklch(0.8 0.18 85);font-size:0.8rem;">⭐ ${fb.rating}</span>` : '';
+          const openStr = fb.open_now === true ? ' <span style="color:oklch(0.75 0.2 145);font-size:0.78rem;">● Open now</span>' : fb.open_now === false ? ' <span style="color:oklch(0.65 0.15 25);font-size:0.78rem;">● Closed</span>' : '';
+          div.innerHTML = `<strong>${fb.name}</strong>${ratingStr}${openStr}<br><span style="color:var(--text-2);font-size:0.85rem;">${fb.address || ''}</span><br><a href="${dirUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.3rem;font-size:0.85rem;color:oklch(0.75 0.15 220);text-decoration:none;">🧭 Get Driving Directions →</a>`;
+          resEl.appendChild(div);
+        });
+      } else {
+        // Fallback: no local food banks found
+        const fallback = document.createElement('div');
+        fallback.className = 'pb-res-item';
+        const mapsSearchUrl = `https://www.google.com/maps/search/food+bank+near+${encodeURIComponent(locData.city + ', ' + locData.state)}`;
+        let fallbackHTML = `<a href="${mapsSearchUrl}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3rem;font-size:0.9rem;color:oklch(0.75 0.15 220);text-decoration:none;font-weight:500;">🗺️ Search Google Maps for food banks near ${locData.city} →</a>`;
+        if (!getMapsKey()) {
+          fallbackHTML += `<br><span style="display:block;margin-top:0.75rem;padding:0.6rem 0.8rem;background:rgba(232,114,58,0.1);border:1px solid rgba(232,114,58,0.2);border-radius:8px;font-size:0.82rem;color:var(--text-2);">💡 <strong style="color:var(--text-1);">Want real-time results?</strong> Add a free Google Maps API key in <a href="#" onclick="event.preventDefault();closePlaybook();openSettings();" style="color:oklch(0.75 0.15 220);">⚙️ Settings</a> to automatically find food banks, pantries, and soup kitchens near any location.</span>`;
+        }
+        fallback.innerHTML = fallbackHTML;
+        resEl.appendChild(fallback);
+      }
+
+      // ── AI-Generated Tips (no URLs) ──
+      const aiTips = (plan.resources || []).filter(r => r.name && r.note);
+      if (aiTips.length) {
+        resEl.insertAdjacentHTML('beforeend', '<h4 style="margin-top:1.5rem;">💡 AI Suggestions</h4>');
+        aiTips.forEach(r => {
+          const div = document.createElement('div');
+          div.className = 'pb-res-item';
+          div.innerHTML = `<strong>${r.name}</strong> <span style="color:var(--text-2);font-size:0.78rem;">(${r.type})</span><br><span style="color:var(--text-2);">${r.note}</span>`;
+          resEl.appendChild(div);
+        });
+      }
+
+      // Challenge — Public + Private split with individual copy buttons
+      const challEl = document.getElementById('pbResultChallenge');
+      const publicText = plan.viral_challenge_public || plan.viral_challenge || '';
+      const privateText = plan.viral_challenge_private || '';
+      const hashtagText = (plan.hashtags || []).join(' ');
+
+      function makeChallengeBtn(label, textToCopy) {
+        const btn = document.createElement('button');
+        btn.innerHTML = `📋 ${label}`;
+        btn.style.cssText = 'margin-top:0.6rem;padding:0.45rem 0.9rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:var(--text-1);font-size:0.82rem;cursor:pointer;transition:all 0.2s ease;display:inline-block;';
+        btn.addEventListener('mouseenter', () => { btn.style.background = 'rgba(255,255,255,0.12)'; });
+        btn.addEventListener('mouseleave', () => { btn.style.background = 'rgba(255,255,255,0.06)'; });
+        btn.addEventListener('click', async () => {
+          const fullText = textToCopy + (hashtagText ? '\n\n' + hashtagText : '');
+          try {
+            await navigator.clipboard.writeText(fullText);
+            btn.innerHTML = '✅ Copied!';
+            btn.style.borderColor = 'oklch(0.7 0.2 145)';
+            setTimeout(() => { btn.innerHTML = `📋 ${label}`; btn.style.borderColor = 'rgba(255,255,255,0.12)'; }, 2000);
+          } catch { btn.innerHTML = '⚠️ Copy failed'; setTimeout(() => { btn.innerHTML = `📋 ${label}`; }, 2000); }
+        });
+        return btn;
+      }
+
+      challEl.innerHTML = '<h4>🔥 Your Viral Challenge</h4>';
+
+      if (publicText) {
+        challEl.insertAdjacentHTML('beforeend', `<div style="margin-bottom:0.5rem;"><p style="font-size:0.75rem;font-weight:700;color:oklch(0.75 0.2 145);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.06em;">📢 Public</p><p style="margin:0 0 0.25rem;">${publicText}</p></div>`);
+        challEl.appendChild(makeChallengeBtn('Copy Public Post', publicText));
+      }
+
+      if (privateText) {
+        challEl.insertAdjacentHTML('beforeend', `<div style="margin-top:1.25rem;margin-bottom:0.5rem;"><p style="font-size:0.75rem;font-weight:700;color:oklch(0.65 0.15 260);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.06em;">🤫 Private</p><p style="margin:0 0 0.25rem;">${privateText}</p></div>`);
+        challEl.appendChild(makeChallengeBtn('Copy Private Message', privateText));
+      }
+
+      if (plan.hashtags && plan.hashtags.length) {
+        challEl.insertAdjacentHTML('beforeend', '<div class="pb-hashtags" style="margin-top:1rem;">' + plan.hashtags.map(h => `<span>${h}</span>`).join('') + '</div>');
+      }
+      if (plan.estimated_meals_impact) {
+        challEl.insertAdjacentHTML('beforeend', `<p style="margin-top:0.75rem;font-size:0.85rem;color:var(--text-2);font-style:normal;">Estimated impact: <strong style="color:oklch(0.8 0.2 30);">${plan.estimated_meals_impact}</strong></p>`);
+      }
+    }
+
+    document.getElementById('pbGenerateBtn').addEventListener('click', async () => {
+      const saved = BYOK.get();
+      if (!saved) { closePlaybook(); openSettings(); return; }
+
+      const zip = document.getElementById('pbZip').value.trim();
+      if (!zip) { document.getElementById('pbStatus').className = 'pb-status err'; document.getElementById('pbStatus').textContent = 'Enter a zip code.'; return; }
+
+      const formData = {
+        zip,
+        budget: parseFloat(document.getElementById('pbBudget').value) || 25,
+        time: parseFloat(document.getElementById('pbTime').value) || 2,
+        tier: parseInt(document.getElementById('pbTier').value) || 1,
+      };
+
+      const statusEl = document.getElementById('pbStatus');
+      const genBtn = document.getElementById('pbGenerateBtn');
+      genBtn.disabled = true;
+
+      // Step 1: Locate food banks — Google Places (if Maps key) or Overpass (free fallback)
+      statusEl.className = 'pb-status'; statusEl.textContent = '📍 Finding food banks near you...';
+      let locData;
+      const mapsKey = getMapsKey();
+      try {
+        let lat, lng, city, state;
+
+        if (mapsKey) {
+          // ─── Google Geocoding API ───
+          const geoR = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(zip)}&key=${mapsKey}`, { signal: AbortSignal.timeout(10000) });
+          const geoD = await geoR.json();
+          if (geoD.status !== 'OK' || !geoD.results.length) throw new Error('Zip code not found');
+          const loc = geoD.results[0];
+          lat = loc.geometry.location.lat; lng = loc.geometry.location.lng;
+          const getComp = (type) => loc.address_components.find(c => c.types.includes(type))?.long_name || '';
+          city = getComp('locality') || getComp('sublocality') || zip;
+          state = getComp('administrative_area_level_1') || '';
+
+          // ─── Google Places API (JS SDK — browser-native, no CORS issues) ───
+          statusEl.textContent = '🔍 Searching real-time food resources via Google Maps...';
+          const keywords = ['food bank', 'food pantry', 'soup kitchen', 'food assistance', 'community kitchen', 'food distribution'];
+          let groceryStores = [];
+          let allPlaces = [];
+
+          if (window.google?.maps?.places?.PlacesService) {
+            // Use the Maps JavaScript API PlacesService (correct browser approach)
+            const mapDiv = document.createElement('div');
+            const dummyMap = new google.maps.Map(mapDiv, { center: { lat, lng }, zoom: 10 });
+            const svc = new google.maps.places.PlacesService(dummyMap);
+            await Promise.all(keywords.map(kw => new Promise(resolve => {
+              svc.nearbySearch(
+                { location: { lat, lng }, radius: 40000, keyword: kw },
+                (results, status) => { if (results) allPlaces.push(...results); resolve(); }
+              );
+            })));
+
+            // ─── Nearby grocery/discount store search (real store names for pricing context) ───
+            let groceryRaw = [];
+            await Promise.all([
+              new Promise(res => svc.nearbySearch({ location: { lat, lng }, radius: 40000, type: 'grocery_or_supermarket' }, (r) => { if (r) groceryRaw.push(...r.slice(0, 6)); res(); })),
+              new Promise(res => svc.nearbySearch({ location: { lat, lng }, radius: 40000, keyword: 'dollar general walmart dollar tree food lion aldi kroger' }, (r) => { if (r) groceryRaw.push(...r.slice(0, 5)); res(); })),
+            ]);
+            const seenG = new Set();
+            groceryStores = groceryRaw
+              .filter(p => { if (seenG.has(p.place_id)) return false; seenG.add(p.place_id); return true; })
+              .slice(0, 6)
+              .map(p => ({ name: p.name, address: p.vicinity || '' }));
+          } else {
+            // Fallback: REST API (may work if Maps JS not yet loaded)
+            for (const kw of keywords) {
+              try {
+                const pR = await fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=40000&keyword=${encodeURIComponent(kw)}&key=${mapsKey}`, { signal: AbortSignal.timeout(10000) });
+                const pD = await pR.json();
+                if (pD.results) allPlaces.push(...pD.results);
+              } catch { /* Continue */ }
+            }
+          }
+
+          // Deduplicate by place_id
+          const seen = new Set();
+          const foodBanks = allPlaces.filter(p => { if (seen.has(p.place_id)) return false; seen.add(p.place_id); return true; }).slice(0, 20).map(p => ({
+            name: p.name,
+            lat: p.geometry.location.lat, lng: p.geometry.location.lng,
+            address: p.vicinity || '',
+            rating: p.rating || null,
+            open_now: p.opening_hours?.open_now ?? null,
+            source: 'google_places',
+          }));
+
+          locData = { city, state, lat, lng, food_banks: foodBanks, zip_code: zip, grocery_stores: groceryStores };
+          statusEl.textContent = `✓ Found ${foodBanks.length} food resources in ${city}, ${state} via Google Maps. Generating plan...`;
+
+        } else {
+          // ─── Fallback: Nominatim + Overpass (free, no key needed) ───
+          const geoR = await fetch(`https://nominatim.openstreetmap.org/search?postalcode=${encodeURIComponent(zip)}&country=us&format=json&limit=1`, {
+            headers: { 'User-Agent': 'FeedHumanity/1.0' }, signal: AbortSignal.timeout(10000)
+          });
+          const geoD = await geoR.json();
+          if (!geoD.length) throw new Error('Zip code not found');
+          lat = parseFloat(geoD[0].lat); lng = parseFloat(geoD[0].lon);
+          const cityState = geoD[0].display_name.split(',');
+          city = cityState[0]?.trim() || zip;
+          state = cityState[1]?.trim() || '';
+
+          const overpassQ = `[out:json][timeout:25];(node["amenity"="food_bank"](around:40000,${lat},${lng});node["amenity"="social_facility"]["social_facility"~"food_bank|food_pantry|soup_kitchen"](around:40000,${lat},${lng});node["social_facility:for"~"hungry|underprivileged|unemployed"](around:40000,${lat},${lng});node["food"="food_pantry"](around:40000,${lat},${lng});node["amenity"="community_centre"]["community_centre"~"food|pantry"](around:40000,${lat},${lng});way["amenity"="food_bank"](around:40000,${lat},${lng});way["amenity"="social_facility"]["social_facility"~"food_bank|food_pantry|soup_kitchen"](around:40000,${lat},${lng}););out center 30;`;
+          const ovR = await fetch('https://overpass-api.de/api/interpreter', {
+            method: 'POST', body: 'data=' + encodeURIComponent(overpassQ), signal: AbortSignal.timeout(20000),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          });
+          const ovD = await ovR.json();
+          const foodBanks = (ovD.elements || []).map(el => ({
+            name: el.tags?.name || 'Food Bank',
+            lat: el.lat ?? el.center?.lat, lng: el.lon ?? el.center?.lon,
+            address: [el.tags?.['addr:street'], el.tags?.['addr:city']].filter(Boolean).join(', ') || '',
+            source: 'overpass',
+          }));
+
+          // ── Nominatim text search backup (finds named pantries/churches OSM misses) ──
+          if (foodBanks.length < 5) {
+            const nimTerms = ['food pantry', 'food bank', 'soup kitchen', 'community food'];
+            for (const term of nimTerms) {
+              try {
+                const nimR = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(term + ' ' + city + ' ' + state)}&format=json&limit=5&countrycodes=us`, {
+                  headers: { 'User-Agent': 'FeedHumanity/1.0' }, signal: AbortSignal.timeout(8000)
+                });
+                const nimD = await nimR.json();
+                for (const item of nimD) {
+                  const itemLat = parseFloat(item.lat), itemLng = parseFloat(item.lon);
+                  const isDupe = foodBanks.some(fb => Math.abs(fb.lat - itemLat) < 0.002 && Math.abs(fb.lng - itemLng) < 0.002);
+                  if (!isDupe) {
+                    foodBanks.push({
+                      name: item.display_name.split(',')[0].trim(),
+                      lat: itemLat, lng: itemLng,
+                      address: item.display_name.split(',').slice(1, 3).join(',').trim(),
+                      source: 'nominatim'
+                    });
+                  }
+                }
+              } catch { /* continue */ }
+            }
+          }
+
+          locData = { city, state, lat, lng, food_banks: foodBanks, zip_code: zip, grocery_stores: groceryStores };
+          const countMsg = foodBanks.length ? `✓ Found ${foodBanks.length} food banks in ${city}, ${state}.` : `No food banks found near ${city}. Add a Google Maps key in Settings for better results.`;
+          statusEl.textContent = countMsg + ' Generating plan...';
+        }
+      } catch (e) {
+        statusEl.className = 'pb-status err'; statusEl.textContent = `Location lookup failed: ${e.message}`;
+        genBtn.disabled = false; return;
+      }
+
+      // Step 2: Build prompt and call LLM via BYOK
+      statusEl.textContent = `🤖 ${BYOK.providers[saved.provider].name} is writing your playbook...`;
+      const { system, user } = buildPlaybookPrompt(locData, formData);
+      try {
+        const raw = await BYOK.providers[saved.provider].genFn(saved.key, system, user);
+        // Parse JSON from response
+        let plan;
+        let cleaned = raw.trim();
+        if (cleaned.startsWith('```')) {
+          const lines = cleaned.split('\n');
+          cleaned = lines.filter(l => !l.startsWith('```')).join('\n');
+        }
+        try { plan = JSON.parse(cleaned); }
+        catch { const s = cleaned.indexOf('{'), e = cleaned.lastIndexOf('}') + 1; plan = JSON.parse(cleaned.slice(s, e)); }
+
+        renderPlaybook(plan, locData);
+      } catch (e) {
+        statusEl.className = 'pb-status err'; statusEl.textContent = `AI generation failed: ${e.message}`;
+      }
+      genBtn.disabled = false;
+    });
+
+    // ═══════════════════════════════════════════
+    // Impact Dashboard — Live Counter + Map
+    // ═══════════════════════════════════════════
+    const IMPACT_API = (location.protocol === 'file:' ? 'https://jmthomasofficial.com/feedhumanity' : '');
+    let impactMap = null;
+    let impactMarkersLayer = null;
+    let impactLoaded = false;
+
+    function animateCounter(el, target, duration = 1500) {
+      if (target === 0) { el.textContent = '0'; return; }
+      const start = performance.now();
+      const fmt = (n) => n.toLocaleString();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = fmt(Math.floor(eased * target));
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = fmt(target);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function initImpactMap() {
+      if (impactMap) return;
+      const mapEl = document.getElementById('impact-map');
+      if (!mapEl) return;
+
+      impactMap = L.map('impact-map', {
+        center: [30, -10],
+        zoom: 2,
+        minZoom: 2,
+        maxZoom: 12,
+        zoomControl: true,
+        scrollWheelZoom: false,
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19,
+      }).addTo(impactMap);
+
+      impactMarkersLayer = L.layerGroup().addTo(impactMap);
+    }
+
+    async function fetchImpactStats() {
+      try {
+        const r = await fetch(`${IMPACT_API}/impact-api.php?action=stats`, { signal: AbortSignal.timeout(5000) });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = await r.json();
+
+        document.getElementById('impactLive').style.display = '';
+        document.getElementById('impactOffline').style.display = 'none';
+
+        animateCounter(document.getElementById('counterMeals'), data.total_meals);
+        animateCounter(document.getElementById('counterCities'), data.total_cities);
+        animateCounter(document.getElementById('counterPosts'), data.total_posts);
+        return true;
+      } catch {
+        document.getElementById('impactLive').style.display = 'none';
+        document.getElementById('impactOffline').style.display = 'block';
+        return false;
+      }
+    }
+
+    async function fetchImpactMap() {
+      try {
+        const r = await fetch(`${IMPACT_API}/impact-api.php?action=map`, { signal: AbortSignal.timeout(5000) });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const markers = await r.json();
+
+        if (!impactMap) initImpactMap();
+        impactMarkersLayer.clearLayers();
+
+        markers.forEach(m => {
+          if (!m.lat || !m.lng) return;
+          const radius = Math.max(6, Math.min(30, Math.sqrt(m.meals) * 3));
+
+          const marker = L.circleMarker([m.lat, m.lng], {
+            radius: radius,
+            fillColor: '#e8723a',
+            fillOpacity: 0.55,
+            color: '#ff9a5c',
+            weight: 1.5,
+          });
+
+          marker.bindPopup(`
+            <div class="pop-meals">${m.meals.toLocaleString()} meals</div>
+            <strong>${m.city}</strong>
+          `);
+
+          impactMarkersLayer.addLayer(marker);
+        });
+
+        if (markers.length > 0) {
+          const bounds = impactMarkersLayer.getBounds();
+          if (bounds.isValid()) impactMap.fitBounds(bounds, { padding: [40, 40], maxZoom: 6 });
+        }
+      } catch { /* Map data unavailable — map shows empty tiles */ }
+    }
+
+    // Trigger on scroll into view
+    const impactSection = document.getElementById('impact');
+    if (impactSection) {
+      const impactObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !impactLoaded) {
+            impactLoaded = true;
+            initImpactMap();
+            fetchImpactStats();
+            fetchImpactMap();
+            // Auto-refresh every 60s
+            setInterval(() => { fetchImpactStats(); fetchImpactMap(); }, 60000);
+          }
+        });
+      }, { threshold: 0.1 });
+      impactObs.observe(impactSection);
+    }
+  </script>
+</body>
+</html>

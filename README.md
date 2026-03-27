@@ -3,105 +3,162 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hashtag](https://img.shields.io/badge/%23FeedHumanity-active-orange)](https://twitter.com/search?q=%23FeedHumanity)
 
+**Try it now — no setup required:** [jmthomasofficial.com/feedhumanity](https://jmthomasofficial.com/feedhumanity/)
+
+Enter your zip code. Get a personalized AI action plan. Feed someone. No accounts, no API keys, no friction.
+
 ---
 
 Jensen Huang says AGI is here. 318 million people are hungry. This repo contains everything you need to help fix that — whether you're one person with $5, a restaurant with surplus food, or a Fortune 500 company looking for the highest-ROI act of corporate responsibility in history.
 
 ---
 
-## What Is Feed Humanity?
+## How It Works
 
-Feed Humanity is an AI-organized viral humanitarian campaign launched March 2026 in direct response to the AGI declaration. The premise is simple: if artificial general intelligence is truly here, the first proof that matters is whether it can help end hunger. Feed Humanity uses AI logistics, real-time impact tracking, and a six-tier participation system to mobilize individuals, businesses, corporations, and tech giants — all around a single atomic act. Buy a meal for a stranger. Give it to them. Film it. Post it. Challenge three more people to do the same.
+**For visitors (no setup needed):** Enter your zip code → get a personalized AI action plan. Free. No accounts, no API keys. Powered by server-side AI with 5 free plans per IP per day.
 
-This is not a donation platform. There is no "donate to X." The food IS the substance. The act IS the donation. A 12-year-old with $5 and a phone is fully participating. A Fortune 500 CEO is doing the same thing. That shared simplicity is the point.
+**For power users:** Add your own free Gemini key in ⚙️ Settings for unlimited plans. Your key stays in your browser — it never touches the server.
+
+**For self-hosters:** Fork this repo, add your own API keys to `api-config.php`, and run your own instance for your community.
 
 ---
 
 ## The Core Mechanic
 
-1. **Buy a meal** for someone who looks like they could use one. Fast food, groceries, a hot plate — anything edible counts.
-2. **Give it** to them. You don't have to be on camera. The food is the star.
-3. **Film the moment** — even a selfie with the meal before handoff works.
-4. **Post it** with `#FeedHumanity` + your city (example: `#FeedHumanityNashville`).
-5. **Challenge three people** by name: `@person1 @person2 @person3 — your turn.`
-
-That is the complete loop. Everything else in this repo is infrastructure to scale that loop.
+1. **Buy a meal** for someone who needs one. Fast food, groceries, a hot plate — anything edible counts.
+2. **Give it** to them. You don't have to be on camera. The food is the act.
+3. **Share it** — film the handoff (food + handshake, not their face), snap the meal before you give it, or just post a text: *"I just fed someone in [City]. You in?"*
+4. **Post** with `#FeedHumanity` + your city.
+5. **Challenge three people** by name. That's how it spreads.
 
 ---
 
-## The AI Layer
+## For Self-Hosters
 
-AI is not decorating this campaign. It is doing real logistics work at every level:
+Run your own instance for your city or community. You'll need PHP hosting (Namecheap, Bluehost, SiteGround, etc.) and a free Gemini API key.
 
-**AI Dispatch** (`ai-dispatch/`) — A real-time surplus-to-deficit matching engine. Restaurants and grocery stores register surplus food closing-time inventory. Food banks and shelters register what they need. The system matches supply to demand, optimizing for distance, perishability, dietary requirements, and transport windows. Around 80 billion pounds of food are wasted annually in the US. Restaurants discard 22 to 33 percent of what they purchase. This system redirects that waste directly to people who need it.
+### Quick Setup (5 minutes)
 
-**AI Playbook Generator** (`ai-playbook/`) — Enter your zip code, budget, and available time. Get a personalized action plan: which food banks near you need help most this week, what to buy at Costco for the maximum meals per dollar, a route for a neighborhood food run, pre-written social posts, and a text template to send your friends.
+**Step 1 — Download the files**
 
-**AI Impact Tracker** — Every `#FeedHumanity` post is parsed for meal count and geolocation, added to the global counter, and plotted on the live map. Real-time stats update continuously.
+Clone this repo or download the ZIP and upload all files to your web host's public directory.
 
-**AI Event Logistics** — Volunteer organizers input their city and the system returns venue options, bulk food sourcing contacts, volunteer shift structures, a media kit, and a post-event impact report template.
+**Step 2 — Get a free Gemini API key (30 seconds)**
 
----
+1. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+2. Sign in with your Google account
+3. Click **"Create API key"** → **"Create API key in new project"**
+4. Copy the key — you'll need it in Step 3
 
-## Quick Start — No Code Required
+**Step 3 — Configure your server**
 
-You do not need to be a developer to participate. These five steps work today:
-
-1. Go to [jmthomasofficial.com/feedhumanity](https://jmthomasofficial.com/feedhumanity) and watch the two-minute overview.
-2. Pick your tier: Individual, Crew, Organizer, Business, Corporation, or Tech Giant.
-3. Open the playbook for your tier (see `playbooks/` folder in this repo or the website).
-4. Do the thing. Buy food. Give it. Film it.
-5. Post with `#FeedHumanity` and tag three people.
-
-That is the full participation loop. Log your act on the website to add to the global counter.
-
----
-
-## For Developers
-
-The repo is organized around the AI infrastructure layers:
-
-| Directory | What It Does |
-|---|---|
-| `ai-dispatch/` | Surplus-to-deficit matching engine (Python). Core algorithm, REST API, database models, geocoder. |
-| `ai-playbook/` | Personalized action plan generator — takes zip, budget, time, returns step-by-step tier plan. |
-| `playbooks/` | All six participation tiers as standalone markdown guides. No code required to use these. |
-| `event-kit/` | Downloadable organizer resources: logistics checklists, poster files, social templates. |
-| `data/` | Live public impact data: meal counts by region, participating cities, partner organizations. |
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, code standards, and good first issues.
-
-### The Matching Problem (ai-dispatch)
-
+Copy `api-config.example.php` to `api-config.php`:
 ```
-SUPPLY: restaurants, grocers, caterers, farms
-  → what food | how much | when available | perishability window | location
-
-DEMAND: food banks, shelters, soup kitchens, event organizers
-  → what they need | capacity | hours | dietary restrictions | location
-
-AI MATCHES → optimize for: distance, perishability, dietary fit, volume
-  → output: "Restaurant X → Shelter Y, pickup at 9:30 PM, 47 meals"
+cp api-config.example.php api-config.php
+```
+Open `api-config.php` and paste your Gemini key:
+```php
+define('GEMINI_API_KEY', 'paste-your-key-here');
 ```
 
-The matching engine is in `ai-dispatch/matching_engine.py`. The REST API is `ai-dispatch/api.py`. Both are documented inline.
+**Step 4 — Optional: Google Maps API for better food bank results**
+
+Without a Maps key, the app uses free OpenStreetMap/Overpass data — works well in most cities. For better results (especially rural areas), add a Google Maps key.
+
+#### Enabling the Google Cloud APIs
+
+You need to enable 3 APIs in Google Cloud Console:
+
+![Google Cloud Console — enable Geocoding API, Places API, and Maps JavaScript API](cloud-services.jpg)
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com) and create a project
+2. Navigate to **APIs & Services → Library** and enable these three:
+   - **Geocoding API** — converts zip codes to coordinates
+   - **Places API** (Legacy) — finds food banks and grocery stores nearby
+   - **Maps JavaScript API** — powers the map display on your site
+3. Go to **APIs & Services → Credentials** → **Create Credentials** → **API Key**
+4. Copy the key and add it to `api-config.php`:
+```php
+define('MAPS_API_KEY', 'paste-your-maps-key-here');
+```
+
+> Google gives $200/month in free API credits — more than enough for a community deployment.
+
+**Step 5 — Upload and test**
+
+Upload all files to your web host. Visit your domain. Enter a zip code. Your instance is live.
+
+> **Note:** `rate-limit.json` and `impact-data.json` need write access. Set `chmod 666` on them, or let PHP create them automatically on first use.
+
+### How the server-side proxy works
+
+| File | Purpose |
+|------|---------|
+| `gemini-proxy.php` | Relays AI requests to Gemini with your server key. Enforces 5 free plans/IP/day. |
+| `foodbank-search.php` | Server-side food bank + grocery store search using your Maps key (no CORS issues). |
+| `api-config.php` | Your private keys — gitignored, never committed. |
+| `api-config.example.php` | Template to copy and fill in. |
+| `rate-limit.json` | Auto-created on first use. Tracks daily usage per IP (hashed for privacy). |
+
+When a visitor generates a plan with no personal key, the request goes through `gemini-proxy.php` using your server key. After 5 plans, they see a friendly message offering to add their own key for unlimited access. This keeps your Gemini free tier (1,500 requests/day) sustainable across ~300 unique visitors daily.
+
+---
+
+## Project Structure
+
+| Path | What It Does |
+|------|-------------|
+| `index.html` | Complete frontend — AI playbook generator, impact tracker, viral challenge system |
+| `gemini-proxy.php` | Server-side Gemini relay with rate limiting (5 free plans/IP/day) |
+| `foodbank-search.php` | Server-side food bank + grocery store search (Google Maps or Overpass fallback) |
+| `api-config.example.php` | Configuration template — copy to `api-config.php` and fill in your keys |
+| `api-config.php` | Your private keys (gitignored — create this manually, never commit it) |
+| `nim-proxy.php` | CORS relay for NVIDIA NIM (optional alternative LLM provider) |
+| `impact-api.php` | Flat-file impact tracking API |
+| `ai-dispatch/` | Surplus-to-deficit matching engine (Python) |
+| `ai-playbook/` | Playbook generation backend (legacy Python — superseded by server-side proxy) |
+| `playbooks/` | All six participation tiers as standalone markdown guides |
+| `event-kit/` | Organizer resources: logistics checklists, social templates |
+
+---
+
+## Participation Tiers
+
+| Tier | Who | Budget | Time |
+|------|-----|--------|------|
+| Individual | One person | $5–$50 | 30 min |
+| Crew | 2–10 friends | $50–$200 | 2 hrs |
+| Organizer | Community leader | $200–$1,000 | 1 week |
+| Small Business | Local business | $500–$5,000 | Ongoing |
+| Corporation | Mid-size company | $5K–$50K | Quarter |
+| Tech Giant | Major tech company | $1M+ | Permanent |
 
 ---
 
 ## Hashtags
 
-**Primary tracking tag:** `#FeedHumanity`
+**Primary:** `#FeedHumanity` — every post is counted.
 
-Every post should include this tag. The impact tracker counts it.
+**City tag:** Add your city. `#FeedHumanityNashville`, `#FeedHumanityLondon`, `#FeedHumanityTokyo`. This feeds the city leaderboard and helps locals find each other.
 
-**Supporting tags (use 1-2 per post):**
-- `#FeedTheNeed` — action-oriented urgency
-- `#EndWorldHunger` — the big goal, searchable
+**Supporting:**
+- `#OneMealChallenge` — the atomic unit
 - `#AGIForGood` — ties to the tech narrative
 - `#FeedForward` — the chain reaction mechanic
-- `#OneMealChallenge` — the atomic unit
 
-**City tag:** Add your city to the primary tag. `#FeedHumanityChicago`, `#FeedHumanityLondon`, `#FeedHumanityTokyo`. This feeds the city leaderboard and helps locals find each other.
+---
+
+## The AI Layer
+
+The app runs entirely server-side for visitors — no API key required to get started.
+
+AI is not decorating this campaign. It is doing real logistics work:
+
+**AI Playbook Generator** — Enter your zip code, budget, and available time. Get a personalized action plan using real food banks near you, actual stores with honest price estimates, and a viral challenge tailored to your city. No generic advice.
+
+**AI Dispatch** (`ai-dispatch/`) — A real-time surplus-to-deficit matching engine. Restaurants and grocery stores register surplus food. Food banks and shelters register what they need. The system matches supply to demand, optimizing for distance, perishability, and transport windows. 80 billion pounds of food are wasted annually in the US. This routes it to people who need it.
+
+**AI Impact Tracker** — Every `#FeedHumanity` post is counted and mapped. Real-time stats. Real meals. Real proof.
 
 ---
 
@@ -109,10 +166,10 @@ Every post should include this tag. The impact tracker counts it.
 
 The companies that fed humanity during the AGI moment will be remembered forever. The ones that did not will be asked why.
 
-If you run a tech company: the CEO challenge is in `playbooks/tech-giant.md`. The ask is simple. Buy someone lunch. Film it. The headline writes itself.
+If you run a tech company: the CEO challenge is in `playbooks/tech-giant.md`. Buy someone lunch. Film it. The headline writes itself.
 
 ---
 
 ## License
 
-[MIT](LICENSE) — do whatever you want with this. Fork it, clone it, build on it, deploy it in your city. The goal is maximum impact, not IP protection.
+[MIT](LICENSE) — fork it, clone it, deploy it in your city. The goal is maximum impact, not IP protection.

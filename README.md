@@ -182,6 +182,52 @@ AI is not decorating this campaign. It is doing real logistics work:
 
 ---
 
+## How the Routing Actually Works (End to End)
+
+The AI dispatch engine is not a concept. Here is the full operational loop, from a restaurant with leftover food to a family eating dinner.
+
+### Step 1: A business reports surplus
+
+A restaurant owner has 40 plates of food at closing time. They text a local HELIOS number: "40 plates ready." That is it. No app to download. No account to create. No form to fill out. One text message, under 10 seconds.
+
+After a few times, it gets even easier. HELIOS texts them at their usual closing time: "Surplus tonight? Reply Y or a number." One character. Done. A tax receipt arrives in their email after pickup. They never coordinate logistics, track anything, or wait around.
+
+### Step 2: The routing engine matches supply to need
+
+The AI scores every possible match across four signals: distance (how far is the nearest food bank?), perishability (how many hours until this food is no good?), volume fit (does the quantity match what the recipient actually needs?), and dietary alignment (a halal shelter needs halal food). The match with the highest composite score wins.
+
+This scoring engine improves itself automatically through the [HELIOS AutoResearch loop](https://github.com/jmthomasofficial/helios-autoresearch). An AI agent rewrites the scoring logic, tests it against real city data, keeps what works, throws away what doesn't, and repeats. The routing gets better at feeding people without anyone touching the code.
+
+### Step 3: A volunteer picks it up
+
+A volunteer running the HELIOS app (a Progressive Web App that works on any phone, no app store needed) gets a notification: "Pick up 40 plates at Broadway BBQ. Deliver to Second Harvest Nashville. 3.2 km. Accept?"
+
+They accept. They navigate to the business. At pickup, they take a photo and count the actual food. Listed: 40 plates. Actual: 36 (4 were already claimed by staff). That discrepancy becomes data that makes future predictions more accurate.
+
+### Step 4: Delivery and confirmation
+
+The volunteer delivers to the recipient org, takes a delivery photo, and confirms the handoff. The recipient rates the delivery. The business gets an auto-generated tax receipt. The volunteer sees their running impact total: "You've delivered 340 meals this month."
+
+### Step 5: The data feeds back into everything
+
+Every completed mission generates approximately 30 data points: timestamps, GPS coordinates, actual versus listed quantities, food condition, photos, recipient satisfaction, waste amounts. This data flows back into the autoresearch engine, which uses it to improve routing accuracy.
+
+The system tracks a prediction for every match (how good did the AI think this match would be?) against the actual outcome (how good was it really?). The gap between those two numbers is the error signal. Over hundreds of missions, the routing engine learns patterns about specific businesses, neighborhoods, food types, and time windows that no human would think to program.
+
+### What stays human
+
+Volunteers pick up and deliver the food. Humans build relationships with local businesses. Community organizers recruit volunteers and expand to new neighborhoods. The AI handles the math. Humans handle the trust. That division is permanent.
+
+### Decentralized by design
+
+There is no central server. Each city runs its own HELIOS node: a Docker container with a SQLite database, a FastAPI backend, and the volunteer PWA. Costs about $5/month on a basic VPS. Data stays local. The city owns its own data.
+
+Nodes can optionally share anonymized routing improvements with each other. If Nashville discovers that adjusting the distance decay curve feeds 15% more people, every other city benefits. But no personal data, no business data, and no mission details ever leave the local node.
+
+Anyone can spin up a node for their city. Clone the repo, set up a Twilio number for SMS intake, and start recruiting businesses and volunteers.
+
+---
+
 ## The Moment
 
 We're in the AGI moment. Jensen Huang said it. The models confirm it. 318 million people are still hungry. 80 billion pounds of food are wasted in the US alone every year. Not because there isn't enough food. Because there's no routing layer connecting surplus to need.
